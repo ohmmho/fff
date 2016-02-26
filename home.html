@@ -1,0 +1,39 @@
+<div ng-controller="mainController">
+
+  <span class="" ng-controller="feedsCtrl" >
+    <div class="feed-list">
+
+      <span ng-repeat="feed in feeds | filter : myFilter  " >
+
+
+        <figure id="img-wrapper" class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing" ng-repeat="item in feed.entries | orderBy: 'publishedDate'" >
+
+
+
+          <div  class="item-background" ng-style="{'background-image':'url({{item.sImage}})'}">
+            <a href="{{item.link}}" target="_blank">
+
+
+              <!-- <img src="{{item.sImage}}" alt="Preview Image"> -->
+              <div class="titulo">
+                <p>{{item.title}}</p>
+              </div>
+              <figcaption>
+                <h2 class="title">{{item.title}}</h2>
+                <div class="bottom-detail">
+                  <p>{{item.contentSnippet}}</p>
+
+                </div>
+              </figcaption>
+            </a>
+          </div>
+
+        </figure>
+
+
+      </span>
+
+
+    </li>
+    </ul>
+</div>
