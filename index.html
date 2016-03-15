@@ -22,14 +22,17 @@
 
     <!-- JS -->
     <!-- load angular, ngRoute, ngAnimate -->
-    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script data-require="lodash.js@*" data-semver="2.4.1" src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+    <script src="js/jquery-2.2.1.min.js"></script>
     <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-resource.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-route.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-resource.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-route.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
     <script src="app.js"></script>
 
-
+  <script src="//storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
 
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
@@ -46,91 +49,67 @@
     <link rel="stylesheet" href="material.min.css">
     <link rel="stylesheet" href="stylesheets/styles.css">
 
-    <script type="text/javascript"
-src="https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22feeds%22%2C%22version%22%3A%221.0%22%2C%22nocss%22%3Atrue%7D%5D%7D"></script>
+    <!-- <script type="text/javascript"
+src="https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22feeds%22%2C%22version%22%3A%221.0%22%2C%22nocss%22%3Atrue%7D%5D%7D"></script> -->
   </head>
   <body ng-controller="nightModeCtrl" ng-class="{'night-mode': nightMode }">
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
-        <div class="mdl-layout__header-row">
+      <header ng-controller="switchCtrl" class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+        <div class="mdl-layout__header-row"><div class="mdl-layout-spacer"></div>
+          <div class="img-wrapper-mobile">
+            <img class="logo-mobile fffresco-logo"src="/images/fffresco-logo.png">
 
-          <!-- <div class="mdl-layout-spacer"></div>
-           <button class="categoria mdl-button mdl-js-button mdl-js-ripple-effect">
-            Inspiración
-           </button>
-           <button class="categoria mdl-button mdl-js-button mdl-js-ripple-effect">
-             Recursos
-            </button>
-           <button class="categoria mdl-button mdl-js-button mdl-js-ripple-effect">
-             Formación
-            </button> -->
-
-
-          <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-              <i class="material-icons">search</i>
-            </label>
-            <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" id="search">
-              <label class="mdl-textfield__label" for="search">Enter your query...</label>
-            </div>
           </div>
-          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-            <i class="material-icons">more_vert</i>
+          <div class="mdl-layout-spacer"></div>
+        <div class="wrapper-button">
+          <button ng-click="isVisibleBtn()"  id="aside-btn" class="mdl-button mdl-js-button mdl-js-ripple-effect ">
+               <i class="material-icons">more_vert</i>
           </button>
-          <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-            <li class="mdl-menu__item">About</li>
-            <li class="mdl-menu__item">Contact</li>
-            <li class="mdl-menu__item">Legal information</li>
-          </ul> -->
+        </div>
 
-          <!-- <div id="tt1">
-            <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="icon-toggle-1">
-              <input ng-click="nightModeBtn()" type="checkbox" id="icon-toggle-1" class="mdl-icon-toggle__input" checked>
-              <i class="mdl-icon-toggle__label material-icons">brightness_3</i>
-            </label>
 
-          </div> -->
+
+
         </div>
       </header>
+
       <div class="demo-drawer mdl-layout__drawer mdl-color--grey-100 mdl-color-text--grey-600">
         <header class="demo-drawer-header">
-          <img class="fffresco-logo"src="/images/fffresco-logo.jpg">
+          <img class="fffresco-logo"src="/images/fffresco-logo.png">
           <!-- <div class="bg-logo">
 
           </div> -->
-          <!-- <div class="demo-avatar-dropdown">
+
 
             <div class="mdl-layout-spacer"></div>
-            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-              <i class="material-icons" role="presentation">arrow_drop_down</i>
-              <span class="visuallyhidden">Accounts</span>
-            </button>
-            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+
+          <!--  <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
               <li class="mdl-menu__item">hello@example.com</li>
               <li class="mdl-menu__item">info@example.com</li>
               <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
-            </ul>
-          </div> -->
+            </ul>-->
+
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color-text--grey-600">
           <!-- <p>_    Inspiración</p> -->
-          <a class="mdl-navigation__link" id="staffpick" ng-click="myFilter = {title:' '}" href=""><img src="images/staffpick.png" class="iconos-sitios staffpick" >Staff Pick</a>
+          <a class="mdl-navigation__link" id="staffpick" ng-click="myFilter = null " href=""><img src="images/favicon.png" class="iconos-sitios staffpick" >Lo más fresco</a>
 
-          <a class="mdl-navigation__link" id="cuarentadefiebre" href="" ng-click="myFilter = {title:'fiebre'}"><img src="images/40defiebre.png" class="iconos-sitios" >40 de Fiebre</a>
-          <a class="mdl-navigation__link" id="domestika" ng-click="myFilter = {title:'gràffica'}" href=""><img src="images/domestika.png" class="iconos-sitios" >Graffica</a>
-          <a class="mdl-navigation__link" id="brandemia" ng-click="myFilter = {title:'visual'}" href="" ><img src="images/fffffound.png" class="iconos-sitios" >Area Visual</a>
-          <a class="mdl-navigation__link" id="tago"  ng-click="myFilter = {title:'Tago'}" href=""><img src="images/brandemia.png" class="iconos-sitios" >Tago Art Work</a>
+          <a class="mdl-navigation__link" id="cuarentadefiebre" href="" ng-click="myFilter = {title:'40defiebre'}"><img src="images/40defiebre.png" class="iconos-sitios" >40 de Fiebre</a>
+          <a class="mdl-navigation__link" id="domestika" ng-click="myFilter = {title:'gràffica'}" href=""><img src="images/graffica.png" class="iconos-sitios" >Graffica</a>
+          <a class="mdl-navigation__link" id="brandemia" ng-click="myFilter = {title:'Área Visual - Blog de Arte y Diseño'}" href="" ><img src="images/areavisual.png" class="iconos-sitios" >Area Visual</a>
+          <a class="mdl-navigation__link" id="criatura"  ng-click="myFilter = {title:'criatura'}" href=""><img src="images/laciaturacreativa.png" class="iconos-sitios" >La criatura creativa</a>
+          <!-- <a class="mdl-navigation__link" id="tago"  ng-click="myFilter = {link:'weloveadvertising'}" href=""><img src="images/brandemia.png" class="iconos-sitios" >We Love Advertising</a> -->
+          <!-- <a class="mdl-navigation__link" id="tago"  ng-click="myFilter = {title:'Aula CM'}" href=""><img src="images/brandemia.png" class="iconos-sitios" >Aula  CM</a> -->
           <!-- <a class="mdl-navigation__link" id="brandemia"  ng-click="myFilter = {title:'brandemia'}" href=""><img src="images/brandemia.png" class="iconos-sitios" >Brandemia</a> -->
           <div class="espacio-menu"></div>
           <a class="mdl-navigation__link" id="behance" ng-click="myFilter = {title:'behance'}" href=""><img src="images/behance.png" class="iconos-sitios" >Behance</a>
           <a class="mdl-navigation__link" id="dribbble" ng-click="myFilter = {title:'dribbble'}" href=""><img src="images/dribbble.png" class="iconos-sitios" >Dribbble</a>
-          <a class="mdl-navigation__link" id="fffffound" ng-click="myFilter = {title:'found'}" href="" ><img src="images/fffffound.png" class="iconos-sitios" >FFFFOUND</a>
+          <a class="mdl-navigation__link" id="fffffound" ng-click="myFilter = {title:'ffffound'}" href="" ><img src="images/fffffound.png" class="iconos-sitios" >FFFFOUND</a>
           <div class="espacio-menu"></div>
           <div class="espacio-menu"></div>
 
           <!-- <p>_    Recursos</p> -->
-          <a class="mdl-navigation__link" id="staffpick" ng-click="myFilter = {title:'diseño &#8211'}" href=""><img src="images/staffpick.png" class="iconos-sitios staffpick" >Recursos</a>
+          <a class="mdl-navigation__link" id="staffpick" ng-click="myFilter = {title:'Diseño – BAIANAI'}" href=""><img src="images/staffpick.png" class="iconos-sitios staffpick" >Recursos</a>
           <!-- <a class="mdl-navigation__link" id="domestika" href=""><img src="images/domestika.png" class="iconos-sitios" >Sitios Múltiples</a> -->
           <!--<a ng-click="myFilter = {title:'diseño'}" class="mdl-navigation__link" id="brandemia" href=""><img src="images/brandemia.png" class="iconos-sitios"  >Diseño</a>
           <a class="mdl-navigation__link" id="cuarentadefiebre" href=""><img src="images/40defiebre.png" class="iconos-sitios" >Desarrollo</a>
@@ -140,13 +119,14 @@ src="https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3
 
           <!-- <div class="espacio-menu"></div> -->
           <div class="espacio-menu"></div>
+          <div class="espacio-menu"></div>
+
 
           <!-- <p>_    Formación</p> -->
-          <!-- <a class="mdl-navigation__link" id="staffpick" href=""><img src="images/staffpick.png" class="iconos-sitios staffpick" >Formación</a> -->
+          <!-- <a class="mdl-navigation__link"  href="">Acerca de fffres.co</a>
+ -->
 
 
-          <div class="espacio-menu"></div>
-          <div class="espacio-menu"></div>
 
           <!-- <a class="mdl-navigation__link" href=""><i class="mdl-color-text--grey-600 material-icons" role="presentation">help_outline</i>RECURSOS<span class="visuallyhidden">Help</span></a> -->
 
@@ -156,11 +136,46 @@ src="https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3
       <div class="mdl-layout__content mdl-color--grey-100" ng-view>
 
       </div>
-    </div>
+      <div id="aside" ng-init="value = 'noche'" ng-class="{'is-visible': isVisible}" class=" demo-navigation mdl-navigation" click-outside="closeThis()" outside-if-not="aside-btn">
+      <a ng-click="nightModeBtn(); value = { 'día': 'noche', 'noche':'día'}[value]">
+        <div class="bg-image">
 
+        </div>
+        <div class="modo-noche">
+          <label class="">
+         <!-- <img src="/images/night.png" /> -->
+         Activar modo <span class="modo-name"> {{value}}</span></a>
+
+        </label>
+        </div>
+      </a>
+
+        <div class="newsletter">
+          <img src="/images/newsletter-fffresco.png"/>
+          <div class="btn-newsletter">
+            <a href="http://baianai.us9.list-manage.com/subscribe?u=d2da477407de1c6e514956e56&id=c1f768173a" target="_blank"><button > ÚNETE </button></a>
+          </div>
+
+        </div>
+
+
+        <div class="wrapper-bottom">
+          <div class="text">
+            <img src="/images/logo-gris-fffresco.png" />
+
+            <p>
+              Inspiración y recursos para el mundo digital
+              <br />
+              ver. 3.3.2
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
       <!-- <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color-text--grey-600">Ver Recursos</a> -->
 
-    <div id="view-source">
+    <!-- <div id="view-source">
       <div id="tt1">
         <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="icon-toggle-1">
           <input ng-click="nightModeBtn()" type="checkbox" id="icon-toggle-1" class="mdl-icon-toggle__input" checked>
@@ -168,8 +183,21 @@ src="https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3
         </label>
 
       </div>
-    </div>
-  <script src="//storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    </div> -->
+
+    <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us9.list-manage.com","uuid":"d2da477407de1c6e514956e56","lid":"c1f768173a"}) })</script>
+      <script src="/js/clickoutside.directive.js"></script>
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+     ga('create', 'UA-74691329-1', 'auto');
+     ga('send', 'pageview');
+
+    </script>
+
 
   </body>
 </html>

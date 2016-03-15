@@ -1,50 +1,31 @@
 // app.js
+
 'use strict';
 // define our application and pull in ngRoute and ngAnimate
-var universityApp = angular.module('universityApp', ['ngRoute', 'ngAnimate', 'ngResource'])
+var universityApp = angular.module('universityApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ui.directives', 'ui.filters','angular-click-outside'])
 
 
 var feeds = [];
 
+
 // -> Fisher–Yates shuffle algorithm
 var shuffleArray = function(array) {
-  var m = array.length, t, i;
-console.log('executing');
-  // While there remain elements to shuffle
-  while (m) {
-    // Pick a remaining element…
-    i = Math.floor(Math.random() * m--);
-
-    // And swap it with the current element.
-    t = array[m];
-    array[m] = array[i];
-    array[i] = t;
-  }
-console.log('shuffled');
-  return array;
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
 }
-// function shuffle(sourceArray) {
-//     for (var i = 0; i < sourceArray.length - 1; i++) {
-//         var j = i + Math.floor(Math.random() * (sourceArray.length - i));
-//
-//         var temp = sourceArray[j];
-//         sourceArray[j] = sourceArray[i];
-//         sourceArray[i] = temp;
-//     }
-//     return sourceArray;
-// }
 
-universityApp.factory('FeedLoader', function ($resource) {
-    return $resource('http://ajax.googleapis.com/ajax/services/feed/load', {}, {
-      fetch: { method: 'JSONP', params: {v:'1.0', callback:'JSON_CALLBACK'} }
-    });
+  universityApp.factory('FeedLoader', function ($resource) {
+      return $resource('http://ajax.googleapis.com/ajax/services/feed/load', {}, {
+        fetch: { method: 'JSONP', params: {v:'1.0', callback:'JSON_CALLBACK'} }
+      });
 
 
-});
-
-
-
-
+  });
 
   universityApp.service('FeedList', function ($rootScope, FeedLoader, $q) {
     this.get = function($scope) {
@@ -58,26 +39,35 @@ universityApp.factory('FeedLoader', function ($resource) {
         {title: 'e', url:'http://ffffound.com/feed'},
         {title: 'f', url:'https://www.behance.net/rss'},
         {title: 'g', url:'http://agenciabai.es/category/recursos-university/diseno-recursos-university/feed/'},
-        {title: 'h', url:'http://www.tagoartwork.com/feed/'},
-        {title: 'i', url:'http://www.area-visual.com/feeds/posts/default'}]
-        // var feedSource1 = feedSource[0].concat(feedSource[1], feedSource[2], feedSource[3],feedSource[4], feedSource[5],feedSource[6],feedSource[7], feedSource[8]);
-        // console.log(feedSource1);
+        {title: 'h', url:'http://lacriaturacreativa.com/feed/'},
+        {title: 'i', url:'http://www.area-visual.com/feeds/posts/default'}
+        // {title: 'j', url:'http://www.weloveadvertising.es/feed/'}
+        // {title: 'k', url:'http://aulacm.com/feed/'}
+      ]
+
+
+
       if (feeds.length === 0) {
         for (var i=0; i < feedSource.length; i++) {
-        console.log(feedSource[i]);
-          FeedLoader.fetch({q: feedSource[i].url, num:100}, {}, function (data) {
-          var feed = angular.copy(data.responseData.feed);
 
+          FeedLoader.fetch({q: feedSource[i].url, num:50}, {}, function (data) {
+          var feed = angular.copy(data.responseData.feed);
+          // console.log(upfeed);
           feeds.push(feed);
 
-
-
+            // for (var j=0; j < upfeed.length; j++) {
+            //   var feed = angular.copy(upfeed[j]);
+            //   feeds.push(feed);
+            //   // console.log(feed);
+            // }
 
           angular.forEach(feed.entries, function(value){
+
             var content = '<div>'+value.content+'</div>';
+        
             value.sImage =  $(content).find('img').eq(0).attr('src');
-            
-            // console.log('image' + value.sImage);
+
+            // console.log(feed.sImage);
 
             // if(value.sImage = value.sImage){
             //
@@ -95,6 +85,7 @@ universityApp.factory('FeedLoader', function ($resource) {
 
             });
 
+
            deffered.resolve(feeds);
 
 
@@ -104,11 +95,10 @@ universityApp.factory('FeedLoader', function ($resource) {
       }
 
       return deffered.promise;
-
-
-
     };
+
   });
+
 
 
 
@@ -116,35 +106,108 @@ universityApp.factory('FeedLoader', function ($resource) {
 
 universityApp.controller('feedsCtrl', function($scope, FeedList) {
 
-  // $scope.indexAct = 0;
 
-  $scope.getFeeds = function() {
+
+$scope.getFeeds = function() {
     FeedList.get().then(function(data){
 
        $scope.feeds = data;
-
        console.log($scope.feeds);
 
-       //shuffleArray($scope.feeds);
-       //shuffle($scope.feeds);
+       //  $scope.staffpick = [];
+      //  if ($scope.staffpick.length === 0) {
 
+        //  for (var i = 0; i < $scope.feeds.length; i++){
+        //    var all = $scope.feeds[i].entries;
+        //    console.log($scope.feeds);
+        // //  $scope.staffpick.push(all);
+        //    for (var i = 0; i < all.length; i++){
+        //      var item = angular.copy(all[i]);
+        //      $scope.staffpick.push(item);
+        //      console.log("executed");
+        //    }
+        //
+        //  }
+        //
+        // console.log($scope.staffpick);
+
+      // }
    })
   }
 
 
+//   $scope.getStaffpick = function () {
+//
+//   $scope.getFeeds();
+//   console.log($scope.feeds);
+//   // $scope.feeds = data;
+//
+//       $scope.staffpick = [];
+//
+//       if ($scope.staffpick.length === 0 ) {
+//         for (var j = 0; j < $scope.feeds.length; j++){
+//           console.log($scope.feeds.length);
+//         var all = $scope.feeds[j].entries;
+//         console.log(all)
+//           for (var i = 0; i < all.length; i++){
+//             var item = angular.copy(all[i]);
+//             $scope.staffpick.push(item);
+//             console.log("executed");
+//           }
+//
+//         }
+//
+//        console.log($scope.staffpick);
+//
+//     }
+//
+// }
 
+  // $scope.getStaffpick();
   $scope.getFeeds();
+
 
 });
 
 
 universityApp.controller('nightModeCtrl', function($scope) {
   $scope.nightMode = false;
+
+
+
   $scope.nightModeBtn = function() {
 
     $scope.nightMode = !$scope.nightMode;
+
+
+
+
+
+
   }
+
+  $scope.isVisible = false;
+
+  $scope.isVisibleBtn  = function() {
+    $scope.isVisible = true;
+
+
+    console.log($scope.isVisible);
+
+
+
+  }
+  //
+  $scope.closeThis = function() {
+    $scope.isVisible = false;
+  }
+
 });
+
+universityApp.controller('switchCtrl', function($scope) {
+  //  $scope.x = {random: true};
+  // console.log($scope.x);
+})
 
 // home page controller
 universityApp.controller('mainController', function($scope) {
@@ -179,6 +242,11 @@ universityApp.config(function($routeProvider) {
             templateUrl: 'about.html',
             controller: 'aboutController'
         })
+
+        // .when('/random', {
+        //     templateUrl: 'random.html',
+        //     controller: 'aboutController'
+        // })
 
 
 

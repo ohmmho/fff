@@ -1,20 +1,42 @@
 <div ng-controller="mainController">
 
   <span class="" ng-controller="feedsCtrl" >
-    <div class="feed-list">
+    <div class="feed-list" >
 
-      <span ng-repeat="feed in feeds | filter : myFilter  " >
+      <span  ng-repeat="feed in feeds | filter : myFilter " >
+
+        <figure id="img-wrapper" class="demo-cards mdl-cell mdl-cell--4-col  mdl-grid mdl-grid--no-spacing" ng-repeat="item in feed.entries " >
+
+            <a href="{{item.link}}" target="_blank">
+
+              <div  class="item-background" ng-style="{'background-image':'url({{item.sImage}})'}">
+              <!-- <img src="{{item.sImage}}" alt="Preview Image"> -->
+              </div>
+              <div class="titulo">
+                <p>{{item.title | limitTo:95}}</p>
+              </div>
+              <figcaption>
+                <h2 class="title">{{item.title}}</h2>
+                <div class="bottom-detail">
+                  <p>{{item.contentSnippet}}</p>
+
+                </div>
+              </figcaption>
+            </a>
 
 
-        <figure id="img-wrapper" class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing" ng-repeat="item in feed.entries | orderBy: 'publishedDate'" >
+        </figure>
 
 
+      </span>
+<!--
+      <span ng-switch-when=true>
+
+        <figure id="img-wrapper" class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing" ng-repeat="item in random track by $index | filter : myFilter" >
 
           <div  class="item-background" ng-style="{'background-image':'url({{item.sImage}})'}">
             <a href="{{item.link}}" target="_blank">
 
-
-              <!-- <img src="{{item.sImage}}" alt="Preview Image"> -->
               <div class="titulo">
                 <p>{{item.title}}</p>
               </div>
@@ -31,9 +53,11 @@
         </figure>
 
 
-      </span>
+      </span> -->
+
+    </div>
+  </span>
 
 
-    </li>
-    </ul>
+
 </div>

@@ -1,0 +1,34 @@
+<div ng-controller="mainController">
+
+  <span class="" ng-controller="feedsCtrl" >
+    <div class="feed-list">
+
+      <span  >
+
+        <figure id="img-wrapper" class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing" ng-repeat="feed in feeds | filter : myFilter   " >
+
+          <div  class="item-background" ng-style="{'background-image':'url({{feed.sImage}})'}">
+            <a href="{{feed.link}}" target="_blank">
+
+              <!-- <img src="{{item.sImage}}" alt="Preview Image"> -->
+              <div class="titulo">
+                <p>{{feed.title}}</p>
+              </div>
+              <figcaption>
+                <h2 class="title">{{feed.title}}</h2>
+                <div class="bottom-detail">
+                  <p>{{feed.contentSnippet}}</p>
+
+                </div>
+              </figcaption>
+            </a>
+          </div>
+
+        </figure>
+
+
+      </span>
+
+    </div>
+  </span>
+</div>
