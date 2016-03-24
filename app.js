@@ -35,7 +35,7 @@ var shuffleArray = function(array) {
         {title: 'b', url:'http://graffica.info/feed'},
         {title: 'c', url:'http://40defiebre.com/feed'},
         {title: 'd', url:'https://dribbble.com/shots/popular.rss'  },
-        // {title:'brandemia', url:'http://brandemia.org/feed'},
+        {title:'brandemia', url:'http://brandemia.org/feed'},
         {title: 'e', url:'http://ffffound.com/feed'},
         {title: 'f', url:'https://www.behance.net/rss'},
         {title: 'g', url:'http://agenciabai.es/category/recursos-university/diseno-recursos-university/feed/'},
@@ -64,7 +64,7 @@ var shuffleArray = function(array) {
           angular.forEach(feed.entries, function(value){
 
             var content = '<div>'+value.content+'</div>';
-        
+
             value.sImage =  $(content).find('img').eq(0).attr('src');
 
             // console.log(feed.sImage);
