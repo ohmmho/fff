@@ -40,9 +40,9 @@ var shuffleArray = function(array) {
         {title: 'f', url:'https://www.behance.net/rss'},
         {title: 'g', url:'http://agenciabai.es/category/recursos-university/diseno-recursos-university/feed/'},
         {title: 'h', url:'http://lacriaturacreativa.com/feed/'},
-        {title: 'i', url:'http://www.area-visual.com/feeds/posts/default'}
+        {title: 'i', url:'http://www.area-visual.com/feeds/posts/default'},
         // {title: 'j', url:'http://www.weloveadvertising.es/feed/'}
-        // {title: 'k', url:'http://aulacm.com/feed/'}
+        {title: 'k', url:'http://mix.chimpfeedr.com/1c890-fffresco'}
       ]
 
 
@@ -50,7 +50,7 @@ var shuffleArray = function(array) {
       if (feeds.length === 0) {
         for (var i=0; i < feedSource.length; i++) {
 
-          FeedLoader.fetch({q: feedSource[i].url, num:50}, {}, function (data) {
+          FeedLoader.fetch({q: feedSource[i].url, num:200}, {}, function (data) {
           var feed = angular.copy(data.responseData.feed);
           // console.log(upfeed);
           feeds.push(feed);
@@ -112,58 +112,12 @@ $scope.getFeeds = function() {
     FeedList.get().then(function(data){
 
        $scope.feeds = data;
+
        console.log($scope.feeds);
-
-       //  $scope.staffpick = [];
-      //  if ($scope.staffpick.length === 0) {
-
-        //  for (var i = 0; i < $scope.feeds.length; i++){
-        //    var all = $scope.feeds[i].entries;
-        //    console.log($scope.feeds);
-        // //  $scope.staffpick.push(all);
-        //    for (var i = 0; i < all.length; i++){
-        //      var item = angular.copy(all[i]);
-        //      $scope.staffpick.push(item);
-        //      console.log("executed");
-        //    }
-        //
-        //  }
-        //
-        // console.log($scope.staffpick);
-
-      // }
    })
   }
 
 
-//   $scope.getStaffpick = function () {
-//
-//   $scope.getFeeds();
-//   console.log($scope.feeds);
-//   // $scope.feeds = data;
-//
-//       $scope.staffpick = [];
-//
-//       if ($scope.staffpick.length === 0 ) {
-//         for (var j = 0; j < $scope.feeds.length; j++){
-//           console.log($scope.feeds.length);
-//         var all = $scope.feeds[j].entries;
-//         console.log(all)
-//           for (var i = 0; i < all.length; i++){
-//             var item = angular.copy(all[i]);
-//             $scope.staffpick.push(item);
-//             console.log("executed");
-//           }
-//
-//         }
-//
-//        console.log($scope.staffpick);
-//
-//     }
-//
-// }
-
-  // $scope.getStaffpick();
   $scope.getFeeds();
 
 
@@ -175,6 +129,7 @@ universityApp.controller('nightModeCtrl', function($scope) {
 
 
 
+    $scope.myFilter = {title: 'fffresco'};
   $scope.nightModeBtn = function() {
 
     $scope.nightMode = !$scope.nightMode;

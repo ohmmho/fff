@@ -302,15 +302,28 @@ _:-ms-input-placeholder, :root .demo-graph {
     border-radius: 3px;
     overflow: hidden;
     transition: .3s all ease;
-    box-shadow: 0 2px 20px 5px rgba(0,0,0,0.06);
     margin: 15px 13px;
     height:267px;
     border: 1px solid rgba(0, 0, 0, 0.22);
+
+    -webkit-transition: -webkit-transform 0.2s ease-out;
+     -moz-transition: -moz-transform 0.2s ease-out;
+       -o-transition: -o-transform 0.2s ease-out;
+          transition: transform 0.2s ease-out;
+
 }
 
 #img-wrapper:hover {
+  -ms-transform: scale(1.03,1.03);
+  -webkit-transform: scale(1.03,1.03);
+  transform: scale(1.03,1.03);
+    box-shadow: 0 2px 20px 5px rgba(0,0,0,0.06);
+    -webkit-transition: -webkit-transform 0.2s ease-out;
+     -moz-transition: -moz-transform 0.2s ease-out;
+       -o-transition: -o-transform 0.2s ease-out;
+          transition: transform 0.2s ease-out;
 
-    box-shadow: none;
+
 }
 
 #img-wrapper img {
@@ -457,40 +470,51 @@ height: 55px;
 
 /* Menu principa, colores:hover y transición */
 
-#staffpick, #domestika, #brandemia, #criatura, #cuarentadefiebre, #behance, #dribbble, #fffffound {
+#staffpick, #domestika, #brandemia, #criatura, #cuarentadefiebre, #behance, #dribbble, #fffffound, #graffica, #areavisual {
  transition: .7s all ease;
 
 }
 
-#staffpick:hover {
+#staffpick:hover, #staffpick:focus {
 
     color: #39eb94 !important;
 }
-#domestika:hover {
+#domestika:hover, #domestika:focus {
 
     color: #F72700 !important;
 
 }
-#brandemia:hover {
+#graffica:hover, #graffica:focus {
 
-    color: #FFFFFF !important;
-}
-#criatura:hover {
-  color:#9bd642;
-}
-#cuarentadefiebre:hover {
+    color: #000000 ;
 
-    color: #FFEF00 !important;
 }
-#behance:hover {
+#areavisual:hover #areavisual:focus {
+
+    color: #000000 ;
+
+}
+#brandemia:hover, #brandemia:focus {
+
+    color: #e1c62f !important;
+}
+#criatura:hover, #criatura:focus {
+  color:#9bd642 !important;
+}
+
+#cuarentadefiebre:hover, #cuarentadefiebre:focus {
+
+    color: #F5E504 !important;
+}
+#behance:hover, #behance:focus  {
 
     color: #0077FF !important;
 }
-#dribbble:hover {
+#dribbble:hover, #dribbble:focus {
 
     color: #EB4888 !important;
 }
-#fffffound:hover {
+#fffffound:hover, #fffffound:focus {
 
     color: #FF009A !important;
 }
@@ -751,9 +775,14 @@ body.night-mode{
     background: #111;
    }
 
-  .demo-layout .demo-navigation .mdl-navigation__link:hover {
+.demo-layout .demo-navigation .mdl-navigation__link:hover  {
        background-color: transparent;
-     color: #FFFFFF;
+     color: #FFFFFF !important;
+ }
+
+ .mdl-navigation__link:focus {
+
+    color: #FFFFFF !important;
  }
 
  .demo-header.mdl-layout__header {
@@ -786,9 +815,11 @@ body.night-mode{
       box-shadow: 0px 6px 18px 7px rgba(255, 242, 92, 0.07);
 
     }
-
   }
+
+
 }
+
 
 
    #img-wrapper {
