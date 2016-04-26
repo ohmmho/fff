@@ -8,16 +8,6 @@ var universityApp = angular.module('universityApp', ['ngRoute', 'ngAnimate', 'ng
 var feeds = [];
 
 
-// -> Fisher–Yates shuffle algorithm
-var shuffleArray = function(array) {
-    for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-    return array;
-}
 
   universityApp.factory('FeedLoader', function ($resource) {
       return $resource('http://ajax.googleapis.com/ajax/services/feed/load', {}, {
@@ -42,7 +32,7 @@ var shuffleArray = function(array) {
         {title: 'h', url:'http://lacriaturacreativa.com/feed/'},
         {title: 'i', url:'http://www.area-visual.com/feeds/posts/default'},
         // {title: 'j', url:'http://www.weloveadvertising.es/feed/'}
-        {title: 'k', url:'http://mix.chimpfeedr.com/1c890-fffresco'}
+        {title: 'k', url:'http://mix.chimpfeedr.com/0da49-lomasfffresco'}
       ]
 
 
@@ -50,7 +40,7 @@ var shuffleArray = function(array) {
       if (feeds.length === 0) {
         for (var i=0; i < feedSource.length; i++) {
 
-          FeedLoader.fetch({q: feedSource[i].url, num:200}, {}, function (data) {
+          FeedLoader.fetch({q: feedSource[i].url, num:250}, {}, function (data) {
           var feed = angular.copy(data.responseData.feed);
           // console.log(upfeed);
           feeds.push(feed);
