@@ -94,7 +94,7 @@ height: 25px;
       -ms-flex-pack: end;
           justify-content: flex-end;
   padding: 16px;
-  height: 151px;
+  //height: 151px;
 
 }
 .demo-avatar-dropdown {
@@ -301,28 +301,28 @@ _:-ms-input-placeholder, :root .demo-graph {
     cursor: pointer;
     border-radius: 3px;
     overflow: hidden;
-    transition: .3s all ease;
+    -webkit-transform: scale(1);
+    transform: scale(1);
     margin: 15px 13px;
     height:267px;
     border: 1px solid rgba(0, 0, 0, 0.22);
 
-    -webkit-transition: -webkit-transform 0.2s ease-out;
-     -moz-transition: -moz-transform 0.2s ease-out;
-       -o-transition: -o-transform 0.2s ease-out;
-          transition: transform 0.2s ease-out;
+    -webkit-transition: transform  0.3s ease-out;
+     -moz-transition:  transform 0.3s ease-out;
+       -o-transition: transform 0.3s ease-out;
+          transition:  transform 0.3s ease-out;
 
 }
 
 #img-wrapper:hover {
-  -ms-transform: scale(1.03,1.03);
-  -webkit-transform: scale(1.03,1.03);
-  transform: scale(1.03,1.03);
-    box-shadow: 0 2px 20px 5px rgba(0,0,0,0.06);
-    -webkit-transition: -webkit-transform 0.2s ease-out;
-     -moz-transition: -moz-transform 0.2s ease-out;
-       -o-transition: -o-transform 0.2s ease-out;
-          transition: transform 0.2s ease-out;
 
+  -webkit-transform: scale(1.02,1.02);
+  transform: scale(1.02,1.02);
+  box-shadow: 0 2px 20px 5px rgba(0,0,0,0.06);
+  -webkit-transition: transform  0.3s ease-out;
+   -moz-transition: transform  0.3s ease-out;
+     -o-transition: transform 0.3s ease-out;
+        transition: transform  0.3s ease-out;
 
 }
 
@@ -448,7 +448,7 @@ height: 55px;
 /* Header, contenido full width y responsive manual*/
 
 .demo-drawer-header{
-  height: 65px;
+  //height: 65px;
   margin-top:6px;
 }
 
@@ -900,4 +900,14 @@ body.night-mode{
     display:none;
   }
   }
+}
+@media (min-width: 1699px) {
+
+  .mdl-layout__container {
+    position: relative;
+    width: 1500px;
+    height: 100%;
+    margin: 0 auto;
+  }
+
 }

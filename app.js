@@ -32,7 +32,9 @@ var feeds = [];
         {title: 'h', url:'http://lacriaturacreativa.com/feed/'},
         {title: 'i', url:'http://www.area-visual.com/feeds/posts/default'},
         // {title: 'j', url:'http://www.weloveadvertising.es/feed/'}
-        {title: 'k', url:'http://mix.chimpfeedr.com/0da49-lomasfffresco'}
+         {title: 'k', url:'http://mix.chimpfeedr.com/0da49-lomasfffresco'}
+//{title: 'k', url:'http://feedkiller.com/feed-40883'}
+
       ]
 
 
@@ -44,18 +46,25 @@ var feeds = [];
           var feed = angular.copy(data.responseData.feed);
           // console.log(upfeed);
           feeds.push(feed);
-
-            // for (var j=0; j < upfeed.length; j++) {
-            //   var feed = angular.copy(upfeed[j]);
-            //   feeds.push(feed);
-            //   // console.log(feed);
-            // }
-
+          console.log(feed);
+        
+            // angular.forEach(feed.title = "lomasfffresco", function(){
+            //
+            //   if(feed.entries.link = "brandemia") {
+            //     console.log('brandemia');
+            //   }
+            //   // var titulo = angular.element( document.querySelector( '.titulo' ) );
+            //   // titulo.addClass('red');
+            //   console.log('lotenemeos');
+            // });
           angular.forEach(feed.entries, function(value){
 
             var content = '<div>'+value.content+'</div>';
 
             value.sImage =  $(content).find('img').eq(0).attr('src');
+
+
+
 
             // console.log(feed.sImage);
 
