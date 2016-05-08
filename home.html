@@ -15,13 +15,15 @@
               <!-- <img src="{{item.sImage}}" alt="Preview Image"> -->
               </div>
               <div class="titulo">
-                <p>{{item.title | limitTo:95}}</p>
+                <p>{{item.title | limitTo:95}} </p>
+                  <p class="source " ng-class="tag-source">{{item.source | uppercase}}</p>
               </div>
+
               <figcaption>
                 <h2 class="title">{{item.title}}</h2>
                 <div class="bottom-detail">
                   <p>{{item.contentSnippet}}</p>
-
+                  <p class="source" ng-class="tag-source">Leer en {{item.source | uppercase}}</p>
                 </div>
               </figcaption>
             </a>

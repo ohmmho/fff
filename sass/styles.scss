@@ -301,10 +301,10 @@ _:-ms-input-placeholder, :root .demo-graph {
     cursor: pointer;
     border-radius: 3px;
     overflow: hidden;
-    -webkit-transform: scale(1);
-    transform: scale(1);
+    // -webkit-transform: scale(1);
+    // transform: scale(1);
     margin: 15px 13px;
-    height:267px;
+    height:217px;
     border: 1px solid rgba(0, 0, 0, 0.22);
 
     -webkit-transition: transform  0.3s ease-out;
@@ -382,7 +382,7 @@ figcaption {
 figcaption h2 {
     margin-top: 20px;
     color: white;
-    font-size: 18px;
+    font-size: 13px;
     line-height: 22px;
     opacity: 0;
     padding-left: 0;
@@ -417,14 +417,70 @@ figcaption .bottom-detail {
 }
 
 .item-background {
-  height: 200px;
+  height: 215px;
   overflow: hidden;
   width: 100%;
   background-size: cover;
   background-position: top center;
   -webkit-border-radius: 2px 2px 0 0;
 }
+.source {
+  display: none;
+}
+.tag-source {
+  color: rgba(252, 252, 252, 0.76)!important;
+  font-size: 10px !important;
+  right: 15px;
+  bottom: 6px !important;
+  margin-bottom:0 !important;
+  margin-right:0 !important;
+  display: block;
+}
+.bottom-detail {
+  .tag-source{
+    color: #999 !important;
+    right: 14px !important;
+    position: absolute;
+    top: 69px !important;
+    padding: 0;
+    display: block;
+  }
+}
 .titulo {
+    padding: 0px 20px;
+    color: #fff !important;
+    background-color: rgba(2, 2, 2, 0.64);
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    bottom: 0;
+
+    left: 0;
+    right: 0;
+    /* bottom: 64px !important; */
+    background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0.65) 99%, rgba(0,0,0,0.65) 100%);
+    /* background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 15%,rgba(0, 0, 0, 0.41) 99%,rgba(0, 0, 0, 0.6) 100%); */
+    /* background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 15%,rgba(0, 0, 0, 0.38) 99%,rgba(0, 0, 0, 0.5) 100%); */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
+    background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 53%, rgba(0,0,0,0.6) 100%);
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 53%,rgba(0,0,0,0.6) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 53%,rgba(0,0,0,0.6) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#99000000',GradientType=0 );
+}
+
+.titulo p {
+    font-size: 13px;
+    line-height: 18px;
+    color: #FFFBFB;
+    bottom: 0px;
+    position: absolute;
+    margin-bottom: 30px;
+    margin-right:20px;
+    text-shadow: 1px 1px 5px #000;
+}
+
+//oldstyle
+.titulo-viejo {
 
   padding: 5px 20px;
   border-top: 1px solid rgba(0,0,0, 0.22) !important;
@@ -437,12 +493,13 @@ height: 55px;
   right: 0;
 }
 
-.titulo p {
+.titulo-viejo p {
       font-size: 13px;
     line-height: 18px;
     color: #757575;
     margin-bottom:0px;
 }
+//
 
 
 /* Header, contenido full width y responsive manual*/

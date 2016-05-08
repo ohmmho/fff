@@ -7,6 +7,9 @@ var universityApp = angular.module('universityApp', ['ngRoute', 'ngAnimate', 'ng
 
 var feeds = [];
 
+function decode_utf8(s) {
+  return decodeURIComponent(escape(s));
+}
 
 
   universityApp.factory('FeedLoader', function ($resource) {
@@ -28,11 +31,10 @@ var feeds = [];
         {title:'brandemia', url:'http://brandemia.org/feed'},
         {title: 'e', url:'http://ffffound.com/feed'},
         {title: 'f', url:'https://www.behance.net/rss'},
-        {title: 'g', url:'http://agenciabai.es/category/recursos-university/diseno-recursos-university/feed/'},
+        {title: 'g', url:'http://baianai.es/category/fffres-co/fffres-co-recursos/feed/'},
         {title: 'h', url:'http://lacriaturacreativa.com/feed/'},
         {title: 'i', url:'http://www.area-visual.com/feeds/posts/default'},
-        // {title: 'j', url:'http://www.weloveadvertising.es/feed/'}
-         {title: 'k', url:'http://mix.chimpfeedr.com/0da49-lomasfffresco'}
+         {title: 'k', url:'http://mix.chimpfeedr.com/77124-lomasfffresco'}
 //{title: 'k', url:'http://feedkiller.com/feed-40883'}
 
       ]
@@ -44,27 +46,70 @@ var feeds = [];
 
           FeedLoader.fetch({q: feedSource[i].url, num:250}, {}, function (data) {
           var feed = angular.copy(data.responseData.feed);
-          // console.log(upfeed);
+
           feeds.push(feed);
-          console.log(feed);
-        
-            // angular.forEach(feed.title = "lomasfffresco", function(){
+          console.log(feed.title);
+
+            // if(feed.title = "lomasfffresco") {
+            //   console.log('in');
             //
-            //   if(feed.entries.link = "brandemia") {
-            //     console.log('brandemia');
-            //   }
-            //   // var titulo = angular.element( document.querySelector( '.titulo' ) );
-            //   // titulo.addClass('red');
-            //   console.log('lotenemeos');
-            // });
+            //   for (var i=0; i < feed.entries.length; i++) {
+            //
+            //     console.log(feed.entries);
+            //
+            //     var titulo = angular.element( document.querySelector( '.titulo' ) );
+            //     titulo.addClass('red');
+            //
+            // }
+            //
+            // };
           angular.forEach(feed.entries, function(value){
+
+            //console.log(value.link);
 
             var content = '<div>'+value.content+'</div>';
 
+            //var contentSnippet = decode_utf8(value.contentSnippet);
+
             value.sImage =  $(content).find('img').eq(0).attr('src');
 
+            if (value.link.indexOf('graffica') > -1) {
+              value.source = 'Gràffica';
+              console.log(value.source);
+            };
+
+            if (value.link.indexOf('area-visual') > -1) {
+              value.source = 'Área Visual';
+              console.log(value.source);
+            };
+            if (value.link.indexOf('baianai') > -1) {
+              value.source = 'Staff Pick';
+              console.log(value.source);
+            };
+            if (value.link.indexOf('brandemia') > -1) {
+              value.source = 'Brandemia';
+              console.log(value.source);
+            };
+            if (value.link.indexOf('lacriaturacreativa') > -1) {
+              value.source = 'La Criatura Creativa';
+              console.log(value.source);
+            };
+            if (value.link.indexOf('40defiebre') > -1) {
+              value.source = '40 de Fiebre';
+              console.log(value.source);
+            };
 
 
+
+          //   switch (value.link) {
+          //     case 'grafica':
+          //       value.link
+          //     case '2':
+          //         alert("Selected Case Number is 2");
+          //         break;
+          //     default:
+          //
+          // }
 
             // console.log(feed.sImage);
 
@@ -120,6 +165,8 @@ $scope.getFeeds = function() {
   $scope.getFeeds();
 
 
+
+
 });
 
 
@@ -127,16 +174,17 @@ universityApp.controller('nightModeCtrl', function($scope) {
   $scope.nightMode = false;
 
 
+  $scope.myFilter = {title: 'fffresco'};
+  $scope.source = function() {
+    if ($scope.myFilter = {title: 'fffresco'} ) {
+console.log($scope.myFilter);
+      $scope.changeSource = 'tag-source';
+    };
+  }
 
-    $scope.myFilter = {title: 'fffresco'};
   $scope.nightModeBtn = function() {
 
     $scope.nightMode = !$scope.nightMode;
-
-
-
-
-
 
   }
 
@@ -145,12 +193,9 @@ universityApp.controller('nightModeCtrl', function($scope) {
   $scope.isVisibleBtn  = function() {
     $scope.isVisible = true;
 
-
     console.log($scope.isVisible);
-
-
-
   }
+
   //
   $scope.closeThis = function() {
     $scope.isVisible = false;
