@@ -7,14 +7,10 @@ var universityApp = angular.module('universityApp', ['ngRoute', 'ngAnimate', 'ng
 
 var feeds = [];
 
-function decode_utf8(s) {
-  return decodeURIComponent(escape(s));
-}
-
 
   universityApp.factory('FeedLoader', function ($resource) {
       return $resource('http://ajax.googleapis.com/ajax/services/feed/load', {}, {
-        fetch: { method: 'JSONP', params: {v:'1.0', callback:'JSON_CALLBACK'} }
+        fetch: { method: 'JSONP', params: {v:'1.0', callback:'JSON_CALLBACK'}, header : {'Content-Type' : 'application/json; charset=UTF-8'} }
       });
 
 
@@ -65,67 +61,42 @@ function decode_utf8(s) {
             // };
           angular.forEach(feed.entries, function(value){
 
-            //console.log(value.link);
+            utf8_decode(value.contentSnippet);
 
             var content = '<div>'+value.content+'</div>';
 
-            //var contentSnippet = decode_utf8(value.contentSnippet);
 
+
+            console.log(value.contentSnippet);
             value.sImage =  $(content).find('img').eq(0).attr('src');
 
-            if (value.link.indexOf('graffica') > -1) {
-              value.source = 'Gràffica';
-              console.log(value.source);
-            };
+            //asign source name
 
-            if (value.link.indexOf('area-visual') > -1) {
-              value.source = 'Área Visual';
-              console.log(value.source);
-            };
-            if (value.link.indexOf('baianai') > -1) {
-              value.source = 'Staff Pick';
-              console.log(value.source);
-            };
-            if (value.link.indexOf('brandemia') > -1) {
-              value.source = 'Brandemia';
-              console.log(value.source);
-            };
-            if (value.link.indexOf('lacriaturacreativa') > -1) {
-              value.source = 'La Criatura Creativa';
-              console.log(value.source);
-            };
-            if (value.link.indexOf('40defiebre') > -1) {
-              value.source = '40 de Fiebre';
-              console.log(value.source);
-            };
+              if (value.link.indexOf('graffica') > -1) {
+                value.source = 'Gràffica';
+                //console.log(value.source);
+              };
 
-
-
-          //   switch (value.link) {
-          //     case 'grafica':
-          //       value.link
-          //     case '2':
-          //         alert("Selected Case Number is 2");
-          //         break;
-          //     default:
-          //
-          // }
-
-            // console.log(feed.sImage);
-
-            // if(value.sImage = value.sImage){
-            //
-            // return value.sImage;
-            //   }
-            //
-            // else {
-            //
-            //   angular.forEach(feed.entries, function(value){
-            //     value.sImage =
-            //     $(value).find('content:\\encoded').find('img').attr('src');
-            //     console.log('no image' + " " + value.sImage);
-            //      });
-            //    }
+              if (value.link.indexOf('area-visual') > -1) {
+                value.source = 'Área Visual';
+                //console.log(value.source);
+              };
+              if (value.link.indexOf('baianai') > -1) {
+                value.source = 'Staff Pick';
+                //console.log(value.source);
+              };
+              if (value.link.indexOf('brandemia') > -1) {
+                value.source = 'Brandemia';
+                //console.log(value.source);
+              };
+              if (value.link.indexOf('lacriaturacreativa') > -1) {
+                value.source = 'La Criatura Creativa';
+                //console.log(value.source);
+              };
+              if (value.link.indexOf('40defiebre') > -1) {
+                value.source = '40 de Fiebre';
+                //console.log(value.source);
+              };
 
             });
 
@@ -146,18 +117,19 @@ function decode_utf8(s) {
 
 
 
+
   // CONTROLLERS ============================================
 
 universityApp.controller('feedsCtrl', function($scope, FeedList) {
 
 
 
-$scope.getFeeds = function() {
+  $scope.getFeeds = function() {
     FeedList.get().then(function(data){
 
        $scope.feeds = data;
 
-       console.log($scope.feeds);
+      // console.log($scope.feeds);
    })
   }
 
@@ -174,13 +146,14 @@ universityApp.controller('nightModeCtrl', function($scope) {
   $scope.nightMode = false;
 
 
+
   $scope.myFilter = {title: 'fffresco'};
-  $scope.source = function() {
-    if ($scope.myFilter = {title: 'fffresco'} ) {
-console.log($scope.myFilter);
-      $scope.changeSource = 'tag-source';
-    };
-  }
+
+  // if ($scope.myFilter = {title: 'fffresco'}) {
+  //     console.log($scope.myFilter);
+  //   angular.element('.source').addClass('tag-source');
+  // };
+
 
   $scope.nightModeBtn = function() {
 
@@ -206,6 +179,8 @@ console.log($scope.myFilter);
 universityApp.controller('switchCtrl', function($scope) {
   //  $scope.x = {random: true};
   // console.log($scope.x);
+
+
 })
 
 // home page controller
@@ -242,10 +217,7 @@ universityApp.config(function($routeProvider) {
             controller: 'aboutController'
         })
 
-        // .when('/random', {
-        //     templateUrl: 'random.html',
-        //     controller: 'aboutController'
-        // })
+
 
 
 

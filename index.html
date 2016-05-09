@@ -3,8 +3,7 @@
 <html lang="es" ng-app="universityApp" >
 
 <head>
-
-    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,25 +18,25 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="fffres.co">
     <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
-    <link rel="stylesheet" href="material.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="stylesheets/material.min.css">
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- JS -->
     <!-- load angular, ngRoute, ngAnimate -->
     <script data-require="lodash.js@*" data-semver="2.4.1" src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
     <script src="js/jquery-2.2.1.min.js"></script>
     <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
-
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-resource.min.js"></script>
+    <script src="app.js"></script>
+    <script src="js/material.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-route.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
-    <script src="app.js"></script>
 
-  <script src="//storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
 
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
@@ -46,12 +45,6 @@
 
     <link rel="shortcut icon" href="images/favicon.png">
 
-    <!-- <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css"> -->
-
-
-
-    <!-- <script type="text/javascript"
-src="https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22feeds%22%2C%22version%22%3A%221.0%22%2C%22nocss%22%3Atrue%7D%5D%7D"></script> -->
   </head>
   <body ng-controller="nightModeCtrl" ng-class="{'night-mode': nightMode }">
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
@@ -170,7 +163,7 @@ src="https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3
             <p>
               Inspiración y recursos para el mundo digital
               <br />
-              ver. 3.3.2
+              ver. 3.3.3
             </p>
           </div>
         </div>
@@ -189,8 +182,8 @@ src="https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3
       </div>
     </div> -->
 
-    <script src="/js/clickoutside.directive.js"></script>
-
+    <script src="js/clickoutside.directive.js"></script>
+    <script src="js/php.js"></script>
     <script>
      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -303,7 +303,7 @@ _:-ms-input-placeholder, :root .demo-graph {
     overflow: hidden;
     // -webkit-transform: scale(1);
     // transform: scale(1);
-    margin: 15px 13px;
+    margin: 15px;
     height:217px;
     border: 1px solid rgba(0, 0, 0, 0.22);
 
@@ -383,7 +383,7 @@ figcaption h2 {
     margin-top: 20px;
     color: white;
     font-size: 13px;
-    line-height: 22px;
+    line-height: 1.2;
     opacity: 0;
     padding-left: 0;
     padding-right: 20px;
@@ -394,7 +394,7 @@ figcaption .bottom-detail {
     position: absolute;
     width: 100%;
     bottom: 0;
-    top: 105px;
+    top: 88px;
     background: #f6f6f6;
     -webkit-transform: translateY(100%);
     -ms-transform: translateY(100%);
@@ -417,7 +417,7 @@ figcaption .bottom-detail {
 }
 
 .item-background {
-  height: 215px;
+  height: 214px;
   overflow: hidden;
   width: 100%;
   background-size: cover;
@@ -648,7 +648,7 @@ height: 55px;
   }
   #aside {
     position: fixed;
-    height: 100vh;
+    height: 100%;
     width: 275px;
     right: 0;
     top: 0;
@@ -727,12 +727,13 @@ height: 55px;
   }
 
   .newsletter {
-    height: 31vh;
-      top: 39%;
+    //height: 31vh;
+      top: 31%;
       position: absolute;
-      width: 275px;
+      max-width: 275px;
     img{
-      width: 275px;
+      margin-top:30px;
+      max-width: 275px;
       margin-bottom: 30px;
     }
     .btn-newsletter {
@@ -769,7 +770,7 @@ height: 55px;
     padding-bottom: 10px;
     .text{
         font-family: courier;
-        font-size: 12px;
+        font-size: 10px;
         text-align: center;
         padding: 0px 20px;
       }
@@ -812,7 +813,7 @@ body.night-mode{
    }
 
    .titulo{
-     background-color: #000;
+
      transition-duration: 0.55s;
      border-top: 1px solid rgba(255,255,255,.22) !important;
    }
@@ -894,6 +895,8 @@ body.night-mode{
 
 
 // ===============================================MEDIA QUERIES============================================================ ===========================================================================================================================//
+
+
 @media screen and (max-width:784px){
   #img-wrapper {
       width: 45%;
@@ -953,10 +956,11 @@ body.night-mode{
     margin:auto;
   }
 .demo-drawer-header {
-  img {
-    display:none;
+    img {
+      display:none;
+    }
   }
-  }
+
 }
 @media (min-width: 1699px) {
 
