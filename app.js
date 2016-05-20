@@ -44,7 +44,7 @@ var feeds = [];
           var feed = angular.copy(data.responseData.feed);
 
           feeds.push(feed);
-          console.log(feed.title);
+          //console.log(feed.title);
 
             // if(feed.title = "lomasfffresco") {
             //   console.log('in');
@@ -61,13 +61,14 @@ var feeds = [];
             // };
           angular.forEach(feed.entries, function(value){
 
-            utf8_decode(value.contentSnippet);
+
 
             var content = '<div>'+value.content+'</div>';
 
 
 
-            console.log(value.contentSnippet);
+            // value.contentSni = utf8_decode(value.contentSnippet);
+            //    console.log(value.contentSni);
             value.sImage =  $(content).find('img').eq(0).attr('src');
 
             //asign source name
@@ -129,6 +130,7 @@ universityApp.controller('feedsCtrl', function($scope, FeedList) {
 
        $scope.feeds = data;
 
+
       // console.log($scope.feeds);
    })
   }
@@ -143,30 +145,80 @@ universityApp.controller('feedsCtrl', function($scope, FeedList) {
 
 
 universityApp.controller('nightModeCtrl', function($scope) {
-  $scope.nightMode = false;
+
+//night mode
+  //$scope.mode = $scope.mode;
+  var theme = localStorage.getItem('theme');
+  $scope.mode = 'día';
 
 
+  $scope.initMode = function() {
+    $scope.mode = $scope.mode;
 
-  $scope.myFilter = {title: 'fffresco'};
+    if(theme == 'night-mode'){
+        angular.element('body').addClass('night-mode');
 
-  // if ($scope.myFilter = {title: 'fffresco'}) {
-  //     console.log($scope.myFilter);
-  //   angular.element('.source').addClass('tag-source');
-  // };
+        $scope.mode = 'noche';
+    }
+
+  }
+
+  $scope.initMode();
+
+  $scope.setMode = function()  {
+    if ($scope.nightMode == false) {
+      $scope.mode = 'día';
+      localStorage.setItem('theme', 'fuck');
+
+    }
+    else {
+      $scope.mode = 'noche';
+      localStorage.setItem('theme', 'night-mode');
+    }
+
+  }
+  //$scope.setMode();
+
+  // $scope.saveMode = function() {
+  //    if(angular.element('body').hasClass('night-mode')){
+  //        localStorage.setItem('theme', 'night-mode');
+  //        console.log(theme);
+  //    }
+  //    else  {
+  //      localStorage.setItem('theme', 'fuck');
+  //      console.log(theme);
+  //    }
+  //  }
+
 
 
   $scope.nightModeBtn = function() {
 
     $scope.nightMode = !$scope.nightMode;
+// $scope.saveMode();
+    $scope.setMode();
 
   }
 
+//source tag
+  $scope.myFilter = {title: 'fffresco'};
+
+     $scope.setTag = function() {
+       if ($scope.myFilter = {title: 'fffresco'}) {
+           console.log($scope.myFilter);
+         angular.element('.source').addClass('tag-source');
+       };
+     }
+
+     $scope.setTag();
+
+//aside slider
   $scope.isVisible = false;
 
   $scope.isVisibleBtn  = function() {
-    $scope.isVisible = true;
+    $scope.isVisible = !$scope.isVisible;
 
-    console.log($scope.isVisible);
+    //console.log($scope.isVisible);
   }
 
   //

@@ -4,6 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+  <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,10 +19,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="fffres.co">
     <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="stylesheets/material.min.css">
     <link rel="stylesheet" href="stylesheets/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
 
 
@@ -41,7 +42,7 @@
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-    <meta name="msapplication-TileColor" content="#3372DF">
+    <meta name="msapplication-TileColor" content="#40EB8E">
 
     <link rel="shortcut icon" href="images/favicon.png">
 
@@ -57,11 +58,7 @@
             </a>
           </div>
           <div class="mdl-layout-spacer"></div>
-        <div class="wrapper-button">
-          <button ng-click="isVisibleBtn()"  id="aside-btn" class="mdl-button mdl-js-button mdl-js-ripple-effect ">
-               <i class="material-icons">more_vert</i>
-          </button>
-        </div>
+
 
 
 
@@ -133,42 +130,68 @@
       <div class="mdl-layout__content mdl-color--grey-100" ng-view>
 
       </div>
+
+
       <div id="aside" ng-init="value = 'noche'" ng-class="{'is-visible': isVisible}" class=" demo-navigation mdl-navigation" click-outside="closeThis()" outside-if-not="aside-btn">
-      <a ng-click="nightModeBtn(); value = { 'día': 'noche', 'noche':'día'}[value]">
+        <!-- <a ng-click="nightModeBtn(); value = { 'día': 'noche', 'noche':'día'}[value]">
+
+          <div class="modo-noche">
+            <label class="">
+           Activar modo <span class="modo-name"> {{value}}</span></a>
+
+          </label>
+          </div>
+
+        </a> -->
+
         <div class="bg-image">
 
         </div>
-        <div class="modo-noche">
-          <label class="">
-         <!-- <img src="/images/night.png" /> -->
-         Activar modo <span class="modo-name"> {{value}}</span></a>
-
-        </label>
+        <div class="menu-aside">
+          <ul>
+            <li> <a>Instala la extensión de Chrome <span class="nuevo">NUEVO</span></a></li>
+            <li>Modo  <span class="modo-name"> {{mode}}</span>
+              <label class="mdl-switch mdl-js-switch " for="switch-1">
+                <input  ng-click="nightModeBtn()" type="checkbox" id="switch-1" class="mdl-switch__input" >
+                <span class="mdl-switch__label"></span>
+              </label>
+            </li>
+            <li> <a>Sugerir contenido</a></li>
+            <li> <a>Sobre el proyecto</a></li>
+            <li> <a>Contacto</a></li>
+          </ul>
         </div>
-      </a>
+          <!-- <div class="newsletter">
+            <img src="/images/newsletter-fffresco.png"/>
+            <div class="btn-newsletter">
+              <a href="http://baianai.us9.list-manage.com/subscribe?u=d2da477407de1c6e514956e56&id=c1f768173a" target="_blank"><button > ÚNETE </button></a>
+            </div>
 
-        <div class="newsletter">
-          <img src="/images/newsletter-fffresco.png"/>
-          <div class="btn-newsletter">
-            <a href="http://baianai.us9.list-manage.com/subscribe?u=d2da477407de1c6e514956e56&id=c1f768173a" target="_blank"><button > ÚNETE </button></a>
+          </div> -->
+
+          <!-- <button ng-click="closeThis()" class="mdl-button mdl-js-button mdl-button--fab">
+            <i class="material-icons">add</i>
+          </button> -->
+          <div class="wrapper-bottom">
+            <div class="text">
+              <img src="/images/logo-gris-fffresco.png" />
+
+              <p>
+                Inspiración y recursos para el mundo digital
+                <br />
+                ver. 3.3.3
+              </p>
+            </div>
           </div>
 
         </div>
+        <div class="wrapper-button">
 
+          <button ng-click="isVisibleBtn()"  id="aside-btn"  class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+            <i class="material-icons">add</i>
+          </button>
 
-        <div class="wrapper-bottom">
-          <div class="text">
-            <img src="/images/logo-gris-fffresco.png" />
-
-            <p>
-              Inspiración y recursos para el mundo digital
-              <br />
-              ver. 3.3.3
-            </p>
-          </div>
         </div>
-
-      </div>
     </div>
       <!-- <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color-text--grey-600">Ver Recursos</a> -->
 
@@ -184,6 +207,7 @@
 
     <script src="js/clickoutside.directive.js"></script>
     <script src="js/php.js"></script>
+    <script charset="UTF-8" src="//cdn.sendpulse.com/js/push/52c76aafe1ef5c32bcdadd89f73e3f20_0.js" async></script>
     <script>
      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
