@@ -767,7 +767,7 @@ figcaption .bottom-detail {
 
 /* line 657, ../sass/styles.scss */
 #aside-btn {
-  margin-right: 14px;
+  margin-right: 18px;
   padding-right: 0px;
   border-radius: 50%;
   height: 36px !important;
@@ -1114,11 +1114,27 @@ body.night-mode #img-wrapper:hover {
   /* line 1029, ../sass/styles.scss */
   .feed-list {
     padding-left: 0px !important;
-    padding-right: 26px;
+    padding-right: 30px !important;
+  }
+
+  /* line 1033, ../sass/styles.scss */
+  .logo-mobile.fffresco-logo {
+    margin-left: -20px;
+  }
+
+  /* line 1037, ../sass/styles.scss */
+  .wrapper-button {
+    bottom: 20px;
+    top: auto;
+  }
+
+  /* line 1041, ../sass/styles.scss */
+  #aside.is-visible ~ .wrapper-button {
+    display: none;
   }
 }
 @media screen and (min-width: 1025px) {
-  /* line 1036, ../sass/styles.scss */
+  /* line 1047, ../sass/styles.scss */
   .demo-header.mdl-layout__header {
     background-color: transparent !important;
     height: 20px;
@@ -1133,59 +1149,59 @@ body.night-mode #img-wrapper:hover {
     /* IE6-9 */
   }
 
-  /* line 1045, ../sass/styles.scss */
+  /* line 1056, ../sass/styles.scss */
   .mdl-layout__header-row {
     display: inline-block;
     float: right;
   }
 }
 @media (max-width: 1024px) {
-  /* line 1053, ../sass/styles.scss */
+  /* line 1064, ../sass/styles.scss */
   .img-wrapper-mobile {
     display: block;
   }
 
-  /* line 1057, ../sass/styles.scss */
+  /* line 1068, ../sass/styles.scss */
   #aside .wrapper-button {
     margin-right: 11px;
   }
-  /* line 1059, ../sass/styles.scss */
+  /* line 1070, ../sass/styles.scss */
   #aside .wrapper-button #aside-btn {
     margin-right: -5px;
   }
 
-  /* line 1064, ../sass/styles.scss */
+  /* line 1075, ../sass/styles.scss */
   #aside.is-visible .wrapper-button {
     margin-right: 11px;
   }
-  /* line 1066, ../sass/styles.scss */
+  /* line 1077, ../sass/styles.scss */
   #aside.is-visible .wrapper-button #aside-btn {
     margin-right: 14px;
   }
 
-  /* line 1071, ../sass/styles.scss */
+  /* line 1082, ../sass/styles.scss */
   .mdl-layout__header-row {
     padding: 0 16px 0 52px;
   }
 
-  /* line 1075, ../sass/styles.scss */
+  /* line 1086, ../sass/styles.scss */
   .feed-list {
     padding-left: 35px;
     padding-right: 40px;
   }
 
-  /* line 1082, ../sass/styles.scss */
+  /* line 1093, ../sass/styles.scss */
   .fffresco-logo {
     margin: auto;
   }
 
-  /* line 1086, ../sass/styles.scss */
+  /* line 1097, ../sass/styles.scss */
   .demo-drawer-header img {
     display: none;
   }
 }
 @media (min-width: 1699px) {
-  /* line 1094, ../sass/styles.scss */
+  /* line 1105, ../sass/styles.scss */
   .mdl-layout__container {
     position: relative;
     width: 1500px;

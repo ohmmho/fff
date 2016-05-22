@@ -655,7 +655,7 @@ height: 55px;
 
   }
   #aside-btn {
-    margin-right: 14px;
+    margin-right: 18px;
     padding-right: 0px;
     border-radius: 50%;
     height: 36px !important;
@@ -1028,7 +1028,18 @@ body.night-mode{
   }
   .feed-list {
     padding-left: 0px !important;
-    padding-right: 26px;
+    padding-right: 30px !important;
+  }
+  .logo-mobile.fffresco-logo {
+    margin-left:-20px;
+  }
+
+  .wrapper-button {
+    bottom:20px;
+    top:auto;
+  }
+  #aside.is-visible ~ .wrapper-button {
+    display: none;
   }
 }
 

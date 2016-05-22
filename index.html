@@ -37,6 +37,8 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-route.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-touch.js"></script>
+
 
 
 
@@ -132,7 +134,7 @@
       </div>
 
 
-      <div id="aside" ng-init="value = 'noche'" ng-class="{'is-visible': isVisible}" class=" demo-navigation mdl-navigation" click-outside="closeThis()" outside-if-not="aside-btn">
+      <div id="aside"  ng-swipe-right="closeThis()" ng-class="{'is-visible': isVisible}" class=" demo-navigation mdl-navigation" click-outside="closeThis()" outside-if-not="aside-btn">
         <!-- <a ng-click="nightModeBtn(); value = { 'día': 'noche', 'noche':'día'}[value]">
 
           <div class="modo-noche">

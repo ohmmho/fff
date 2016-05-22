@@ -2,7 +2,7 @@
 
 'use strict';
 // define our application and pull in ngRoute and ngAnimate
-var universityApp = angular.module('universityApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ui.directives', 'ui.filters','angular-click-outside'])
+var universityApp = angular.module('universityApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ui.directives', 'ui.filters','angular-click-outside', 'ngTouch'])
 
 
 var feeds = [];
@@ -147,7 +147,7 @@ universityApp.controller('feedsCtrl', function($scope, FeedList) {
 universityApp.controller('nightModeCtrl', function($scope) {
 
 //night mode
-  //$scope.mode = $scope.mode;
+
   var theme = localStorage.getItem('theme');
   $scope.mode = 'día';
 
@@ -168,7 +168,7 @@ universityApp.controller('nightModeCtrl', function($scope) {
   $scope.setMode = function()  {
     if ($scope.nightMode == false) {
       $scope.mode = 'día';
-      localStorage.setItem('theme', 'fuck');
+      localStorage.setItem('theme', 'day-mode');
 
     }
     else {
