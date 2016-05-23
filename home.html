@@ -7,7 +7,7 @@
 
       <span  ng-repeat="feed in feeds | filter : myFilter ">
 
-        <figure id="img-wrapper"  class="demo-cards mdl-cell mdl-cell--4-col  mdl-grid mdl-grid--no-spacing" ng-repeat="item in feed.entries " >
+        <figure id="img-wrapper" ang-show="isActive($index)" aang-swipe-left="showPrev()" ang-swipe-right="showNext()" class="demo-cards mdl-cell mdl-cell--4-col  mdl-grid mdl-grid--no-spacing" ng-repeat="item in feed.entries " >
 
             <a href="{{item.link}}" target="_blank">
 

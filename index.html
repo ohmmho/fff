@@ -35,9 +35,9 @@
     <script src="app.js"></script>
     <script src="js/material.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-touch.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-route.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-touch.js"></script>
 
 
 
@@ -68,7 +68,7 @@
         </div>
       </header>
 
-      <div class="demo-drawer mdl-layout__drawer mdl-color--grey-100 mdl-color-text--grey-600">
+      <div ang-class="{'is-visible': isOpen}" ng-swipe-left="closeThat()" class="demo-drawer mdl-layout__drawer mdl-color--grey-100 mdl-color-text--grey-600">
         <header class="demo-drawer-header">
           <a href="http://www.baianai.es/fffresco" target="_blank">
             <img class="fffresco-logo"src="/images/fffresco-logo.png">
@@ -154,7 +154,7 @@
             <li> <a>Instala la extensión de Chrome <span class="nuevo">NUEVO</span></a></li>
             <li>Modo  <span class="modo-name"> {{mode}}</span>
               <label class="mdl-switch mdl-js-switch " for="switch-1">
-                <input  ng-click="nightModeBtn()" type="checkbox" id="switch-1" class="mdl-switch__input" >
+                <input ng-click="nightModeBtn()" type="checkbox" id="switch-1" class="mdl-switch__input" >
                 <span class="mdl-switch__label"></span>
               </label>
             </li>

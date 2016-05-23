@@ -1082,11 +1082,11 @@ body.night-mode #aside .bg-image {
   transition-duration: 0.05s;
 }
 /* line 982, ../sass/styles.scss */
-body.night-mode #aside .mdl-switch.is-checked .mdl-switch__thumb {
+body.night-mode #aside .mdl-switch .mdl-switch__thumb {
   background: #3FE78B;
 }
 /* line 985, ../sass/styles.scss */
-body.night-mode #aside .mdl-switch.is-checked .mdl-switch__track {
+body.night-mode #aside .mdl-switch .mdl-switch__track {
   background: rgba(53, 174, 108, 0.5);
 }
 /* line 990, ../sass/styles.scss */

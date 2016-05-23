@@ -979,10 +979,10 @@ body.night-mode{
    transition-duration: 0.05s;
   }
 
-  .mdl-switch.is-checked .mdl-switch__thumb {
+  .mdl-switch .mdl-switch__thumb {
         background: #3FE78B;
   }
-  .mdl-switch.is-checked .mdl-switch__track {
+  .mdl-switch .mdl-switch__track {
       background: rgba(53, 174, 108, 0.5);
   }
 

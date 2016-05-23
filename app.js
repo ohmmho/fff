@@ -59,6 +59,7 @@ var feeds = [];
             // }
             //
             // };
+
           angular.forEach(feed.entries, function(value){
 
 
@@ -129,14 +130,36 @@ universityApp.controller('feedsCtrl', function($scope, FeedList) {
     FeedList.get().then(function(data){
 
        $scope.feeds = data;
+    //console.log($scope.feed);
 
-
-      // console.log($scope.feeds);
    })
   }
 
 
   $scope.getFeeds();
+
+  // initial feed index
+
+if (!$scope._Index) {
+  $scope._Index = 0;
+}
+
+// if a current feed is the same as requested feed
+$scope.isActive = function (index) {
+    return $scope._Index === index;
+
+};
+
+// show prev feed
+$scope.showPrev = function () {
+    $scope._Index = ($scope._Index > 0) ? --$scope._Index : $scope.feeds.length - 1;
+
+};
+
+// show next feed
+$scope.showNext = function () {
+    $scope._Index = ($scope._Index < $scope.feeds.length - 1) ? ++$scope._Index : 0;
+};
 
 
 
@@ -215,6 +238,8 @@ universityApp.controller('nightModeCtrl', function($scope) {
 //aside slider
   $scope.isVisible = false;
 
+
+
   $scope.isVisibleBtn  = function() {
     $scope.isVisible = !$scope.isVisible;
 
@@ -225,7 +250,10 @@ universityApp.controller('nightModeCtrl', function($scope) {
   $scope.closeThis = function() {
     $scope.isVisible = false;
   }
-
+  $scope.closeThat = function() {
+    angular.element('.demo-drawer').removeClass('is-visible');
+    angular.element('.mdl-layout__obfuscator').removeClass('is-visible');
+  }
 });
 
 universityApp.controller('switchCtrl', function($scope) {
