@@ -8,6 +8,10 @@ var universityApp = angular.module('universityApp', ['ngRoute', 'ngAnimate', 'ng
 var feeds = [];
 
 
+
+
+
+
   universityApp.factory('FeedLoader', function ($resource) {
       return $resource('http://ajax.googleapis.com/ajax/services/feed/load', {}, {
         fetch: { method: 'JSONP', params: {v:'1.0', callback:'JSON_CALLBACK'}, header : {'Content-Type' : 'application/json; charset=UTF-8'} }
@@ -30,8 +34,9 @@ var feeds = [];
         {title: 'g', url:'http://baianai.es/category/fffres-co/fffres-co-recursos/feed/'},
         {title: 'h', url:'http://lacriaturacreativa.com/feed/'},
         {title: 'i', url:'http://www.area-visual.com/feeds/posts/default'},
-         {title: 'k', url:'http://mix.chimpfeedr.com/77124-lomasfffresco'}
-//{title: 'k', url:'http://feedkiller.com/feed-40883'}
+        {title: 'k', url:'http://mix.chimpfeedr.com/77124-lomasfffresco'},
+        {title: 'o', url:'http://thecreatorsproject.vice.com/es/rss'}
+
 
       ]
 
@@ -99,6 +104,10 @@ var feeds = [];
                 value.source = '40 de Fiebre';
                 //console.log(value.source);
               };
+              if (value.link.indexOf('thecreatorsproject') > -1) {
+                value.source = 'The Creators Project';
+                //console.log(value.source);
+              };
 
             });
 
@@ -130,7 +139,8 @@ universityApp.controller('feedsCtrl', function($scope, FeedList) {
     FeedList.get().then(function(data){
 
        $scope.feeds = data;
-    //console.log($scope.feed);
+    console.log($scope.feeds);
+
 
    })
   }
@@ -139,27 +149,27 @@ universityApp.controller('feedsCtrl', function($scope, FeedList) {
   $scope.getFeeds();
 
   // initial feed index
-
-if (!$scope._Index) {
-  $scope._Index = 0;
-}
-
-// if a current feed is the same as requested feed
-$scope.isActive = function (index) {
-    return $scope._Index === index;
-
-};
-
-// show prev feed
-$scope.showPrev = function () {
-    $scope._Index = ($scope._Index > 0) ? --$scope._Index : $scope.feeds.length - 1;
-
-};
-
-// show next feed
-$scope.showNext = function () {
-    $scope._Index = ($scope._Index < $scope.feeds.length - 1) ? ++$scope._Index : 0;
-};
+  //
+  // if (!$scope._Index) {
+  //   $scope._Index = 0;
+  // }
+  //
+  // // if a current feed is the same as requested feed
+  // $scope.isActive = function (index) {
+  //     return $scope._Index === index;
+  //
+  // };
+  //
+  // // show prev feed
+  // $scope.showPrev = function () {
+  //     $scope._Index = ($scope._Index > 0) ? --$scope._Index : $scope.feeds.length - 1;
+  //
+  // };
+  //
+  // // show next feed
+  // $scope.showNext = function () {
+  //     $scope._Index = ($scope._Index < $scope.feeds.length - 1) ? ++$scope._Index : 0;
+  // };
 
 
 
@@ -200,40 +210,28 @@ universityApp.controller('nightModeCtrl', function($scope) {
     }
 
   }
-  //$scope.setMode();
-
-  // $scope.saveMode = function() {
-  //    if(angular.element('body').hasClass('night-mode')){
-  //        localStorage.setItem('theme', 'night-mode');
-  //        console.log(theme);
-  //    }
-  //    else  {
-  //      localStorage.setItem('theme', 'fuck');
-  //      console.log(theme);
-  //    }
-  //  }
 
 
 
   $scope.nightModeBtn = function() {
 
     $scope.nightMode = !$scope.nightMode;
-// $scope.saveMode();
+
     $scope.setMode();
 
   }
 
 //source tag
-  $scope.myFilter = {title: 'fffresco'};
+ $scope.myFilter = {title: 'fffresco'};
 
-     $scope.setTag = function() {
-       if ($scope.myFilter = {title: 'fffresco'}) {
-           console.log($scope.myFilter);
-         angular.element('.source').addClass('tag-source');
-       };
-     }
-
-     $scope.setTag();
+    //  $scope.setTag = function() {
+    //    if ($scope.myFilter = {title: 'fffresco'}) {
+    //        console.log($scope.myFilter);
+    //      angular.element('.source').addClass('tag-source');
+    //    };
+    //  }
+     //
+    //  $scope.setTag();
 
 //aside slider
   $scope.isVisible = false;
@@ -250,18 +248,31 @@ universityApp.controller('nightModeCtrl', function($scope) {
   $scope.closeThis = function() {
     $scope.isVisible = false;
   }
+
+  //close menu-mobile
   $scope.closeThat = function() {
     angular.element('.demo-drawer').removeClass('is-visible');
     angular.element('.mdl-layout__obfuscator').removeClass('is-visible');
   }
 });
 
-universityApp.controller('switchCtrl', function($scope) {
+universityApp.controller('switchCtrl', function($scope, $rootScope) {
   //  $scope.x = {random: true};
   // console.log($scope.x);
+  //width
+  var mobileWidth= '653px';
+  var tabletWidth= '653px';
 
+  $scope.getWidth = function() {
+      var width = $(document).width();
 
-})
+      $scope.mobile = width > mobileWidth;
+      $scope.tablet = width > tabletWidth;
+    ;
+  }
+
+  $scope.getWidth();
+});
 
 // home page controller
 universityApp.controller('mainController', function($scope) {

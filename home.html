@@ -5,17 +5,37 @@
 
 
 
-      <span  ng-repeat="feed in feeds | filter : myFilter ">
+   <span  ng-repeat="feed in feeds | filter : myFilter ">
 
-        <figure id="img-wrapper" ang-show="isActive($index)" aang-swipe-left="showPrev()" ang-swipe-right="showNext()" class="demo-cards mdl-cell mdl-cell--4-col  mdl-grid mdl-grid--no-spacing" ng-repeat="item in feed.entries " >
+      <!--     <figure ng-if="!$scope.mobile" id="img-wrapper" ng-show="isActive($index)" ng-swipe-left="showPrev()" ng-swipe-right="showNext()" class="demo-cards mdl-cell mdl-cell--4-col  mdl-grid mdl-grid--no-spacing" ng-repeat="item in feed.entries " >
 
             <a href="{{item.link}}" target="_blank">
 
               <div  class="item-background" ng-style="{'background-image':'url({{item.sImage}})'}">
-              <!-- <img src="{{item.sImage}}" alt="Preview Image"> -->
+              </div>
+
+
+              <figcaption>
+
+                <div class="bottom-detail">
+                  <h2 class="title">{{item.title}}</h2>
+                  <p>{{item.contentSnippet}}</p>
+                  <p class="tag-source" >Leer en {{item.source | uppercase}}</p>
+                </div>
+              </figcaption>
+            </a>
+
+
+        </figure>-->
+
+    <figure  id="img-wrapper"  class="demo-cards mdl-cell mdl-cell--4-col  mdl-grid mdl-grid--no-spacing" ng-repeat="item in feed.entries " >
+
+            <a href="{{item.link}}" target="_blank">
+
+              <div  class="item-background" ng-style="{'background-image':'url({{item.sImage}})'}">
               </div>
               <div class="titulo">
-                <p>{{item.title | limitTo:95}} </p>
+                <p>{{item.title | limitTo:100}} </p>
                   <p class="tag-source " >{{item.source | uppercase}}</p>
               </div>
 
@@ -30,6 +50,7 @@
 
 
         </figure>
+
 
 
       </span>

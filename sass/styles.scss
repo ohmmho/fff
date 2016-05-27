@@ -15,7 +15,25 @@ html, body {
 	}
 
 }
+@media (min-width: 1699px) {
 
+  .mdl-layout__container {
+    position: relative;
+    width: 1500px;
+    height: 100%;
+    margin: 0 auto;
+    .wrapper-button {
+      margin-right: 165px;
+    }
+    #aside.is-visible ~ .wrapper-button {
+      transform: translateX(-40px);
+      -webkit-transform: translateX(-40px);
+    }
+
+
+  }
+
+}
 //header
 .fffresco-logo {
   margin-left: 20px;
@@ -681,16 +699,16 @@ height: 55px;
     width: 275px;
     right: 0;
     top: 0;
-    background: #D3D3D3;
+    background: #ececec;
     z-index: 3;
     //display:none;
     transform:translateX(275px);
     -webkit-transform:translateX(275px);
     //padding: 15px 30px;
-    -webkit-transition-duration: 0.3s; /* Safari */
-      transition-duration: 0.3s;
-    -webkit-transition-property: transform;
-      transition-property: transform;
+    -webkit-transition-duration: 0.3s !important; /* Safari */
+      transition-duration: 0.3s !important;
+    -webkit-transition-property: transform !important;
+      transition-property: transform !important;
     color:#757575;
 
 
@@ -719,7 +737,7 @@ height: 55px;
 
         ul {
           li {
-            border-top: 1px solid #757575;
+            border-top: 1px solid #DCDCDC;
             padding:20px 30px;
             color: #757575;
             font-size: 13px;
@@ -727,6 +745,7 @@ height: 55px;
               cursor: pointer;
               color: #757575;
               font-size: 13px;
+              text-decoration: none;
               span.nuevo {
                 font-size: 9px;
                 letter-spacing: 0px;
@@ -768,7 +787,7 @@ height: 55px;
 
 
             &:last-child {
-              border-bottom: 1px solid #757575;
+              border-bottom: 1px solid #DCDCDC;
             }
           }
         }
@@ -974,6 +993,15 @@ body.night-mode{
   -webkit-transition-duration: 0.15s;
     transition: background;
     transition-duration: 0.15s;
+    ul {
+      li {
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        &:last-child {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+      }
+
+    }
   .bg-image {
    background-image:url('/images/modo-dia-fffresco.jpg') !important;
    transition-duration: 0.05s;
@@ -981,6 +1009,7 @@ body.night-mode{
 
   .mdl-switch .mdl-switch__thumb {
         background: #3FE78B;
+        left:22px !important;
   }
   .mdl-switch .mdl-switch__track {
       background: rgba(53, 174, 108, 0.5);
@@ -1024,7 +1053,39 @@ body.night-mode{
 @media screen and (max-width:653px){
   #img-wrapper {
       width: 100%;
-
+      //height: 75vh;
+//box-shadow: 0 2px 19px 5px rgba(0, 0, 0, 0.38);
+//margin-top:22px;
+//background: #f6f6f6 !important;
+  }
+  // figcaption {
+  //   height: 40vh;
+  //   margin: 0 auto;
+  //   top:auto;
+  //   .bottom-detail {
+  //     height: 100%;
+  //     position:relative;
+  //     top:-20px;
+  //   -webkit-transform: translateY(0%);
+  //     -ms-transform: translateY(0%);
+  //    transform: translateY(0%);
+  //     h2, p {
+  //       opacity:1;
+  //     }
+  //     h2 {
+  //       padding-left: 15px;
+  //       color:#999;
+  //     }
+  //     .tag-source {
+  //       top: auto !important;
+  //       bottom: 20px;
+  //     }
+  //   }
+  //
+  // }
+  #aside-btn {
+    height: 56px !important;
+    width: 56px !important;
   }
   .feed-list {
     padding-left: 0px !important;
@@ -1100,13 +1161,7 @@ body.night-mode{
   }
 
 }
-@media (min-width: 1699px) {
 
-  .mdl-layout__container {
-    position: relative;
-    width: 1500px;
-    height: 100%;
-    margin: 0 auto;
-  }
-
+::-webkit-scrollbar {
+    display: none;
 }
