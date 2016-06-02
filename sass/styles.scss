@@ -141,6 +141,7 @@ height: 25px;
   -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  overflow-x: hidden;
 }
 .demo-layout .demo-navigation .mdl-navigation__link {
   display: -webkit-box !important;
@@ -158,6 +159,7 @@ height: 25px;
           align-items: center;
   color: #757575;
   font-weight: 500;
+  font-size:12px;
 }
 .demo-layout .demo-navigation .mdl-navigation__link:hover {
   background-color: transparent;
@@ -548,13 +550,13 @@ height: 55px;
 
 
 .mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
-    padding: 12px 40px;
-
+    padding: 9px 40px;
+    width: 100%;
 }
 
 /* Menu principa, colores:hover y transición */
 
-#staffpick, #domestika, #brandemia, #criatura, #cuarentadefiebre, #behance, #dribbble, #fffffound, #graffica, #areavisual {
+#staffpick, #domestika, #brandemia, #criatura, #cuarentadefiebre, #behance, #dribbble, #fffffound, #graffica, #areavisual, #fubiz, #awwwards, #css-winner {
  transition: .7s all ease;
 
 }
@@ -573,10 +575,9 @@ height: 55px;
     color: #000000 ;
 
 }
+
 #areavisual:hover #areavisual:focus {
-
     color: #000000 ;
-
 }
 #brandemia:hover, #brandemia:focus {
 
@@ -602,12 +603,28 @@ height: 55px;
 
     color: #FF009A !important;
 }
+#css-winner:hover, #css-winner:focus {
+
+    color: #cf4949 !important;
+}
+#awwwards:hover, #awwwards:focus {
+
+    color: #3c948b !important;
+}
+#fubiz:hover, #fubiz:focus {
+
+    color: #bd5ee6 !important;
+}
+
 
 .iconos-sitios {
 
   margin-right: 15px;
   width: 15px;
   margin-bottom: 2px;
+  border-radius:25px;
+
+
 
 }
 
@@ -746,6 +763,7 @@ height: 55px;
               color: #757575;
               font-size: 13px;
               text-decoration: none;
+              transition: .7s all ease;
               span.nuevo {
                 font-size: 9px;
                 letter-spacing: 0px;
@@ -754,6 +772,10 @@ height: 55px;
                 position: absolute;
               }
 
+            }
+            a:hover {
+            transition: .7s all ease;
+            color: #39eb94 !important;
             }
             .mdl-switch {
               display: inline;
@@ -1160,6 +1182,12 @@ body.night-mode{
     }
   }
 
+}
+
+@media (max-height:500px) {
+  .wrapper-bottom {
+    display: none;
+  }
 }
 
 ::-webkit-scrollbar {

@@ -34,8 +34,20 @@ var feeds = [];
         {title: 'g', url:'http://baianai.es/category/fffres-co/fffres-co-recursos/feed/'},
         {title: 'h', url:'http://lacriaturacreativa.com/feed/'},
         {title: 'i', url:'http://www.area-visual.com/feeds/posts/default'},
-        {title: 'k', url:'http://mix.chimpfeedr.com/77124-lomasfffresco'},
-        {title: 'o', url:'http://thecreatorsproject.vice.com/es/rss'}
+        {title: 'k', url:'http://mix.chimpfeedr.com/7e4a7-lomasfffresco'},
+        {title: 'm', url:'http://thecreatorsproject.vice.com/es/rss'},
+        {title: 'n', url:'http://nfgraphics.com/feed/'},
+        {title: 'o', url:'http://www.domestika.org/es/blog/rss'},
+        {title: 'p', url:'http://www.awwwards.com/feed/'},
+        {title: 'q', url:'http://www.csswinner.com/feed'},
+        //{title: 'r', url:'https://www.producthunt.com/feed'},
+        {title: 's', url:'http://www.fubiz.net/feed/'}
+        //{title: 'empleo', url:'http://mix.chimpfeedr.com/74a48-empleofffresco'}
+
+
+        //{title: 't', url:'https://www.smashingmagazine.com/feed/'}
+
+
 
 
       ]
@@ -70,12 +82,14 @@ var feeds = [];
 
 
             var content = '<div>'+value.content+'</div>';
-
+            //var description = '<div>'+value.description+'</div>';
 
 
             // value.contentSni = utf8_decode(value.contentSnippet);
             //    console.log(value.contentSni);
             value.sImage =  $(content).find('img').eq(0).attr('src');
+
+
 
             //asign source name
 
@@ -108,7 +122,51 @@ var feeds = [];
                 value.source = 'The Creators Project';
                 //console.log(value.source);
               };
+              if (value.link.indexOf('CosasVisuales') > -1) {
+                value.source = 'Cosas Visuales';
+                //console.log(value.source);
+              };
+              if (value.link.indexOf('nfgraphics') > -1) {
+                value.source = 'Nice Fucking Graphics!';
+                //console.log(value.source);
+              };
+              if (value.link.indexOf('behance') > -1) {
+                value.source = 'Behance';
+                //console.log(value.source);
+              };
+              if (value.link.indexOf('dribbble') > -1) {
+                value.source = 'Dribbble';
+                //console.log(value.source);
+              };
+              if (value.link.indexOf('ffffound') > -1) {
+                value.source = 'FFFFOUND';
+                //console.log(value.source);
+              };
+              if (value.link.indexOf('domestika') > -1) {
+                value.source = 'Domestika';
+                //console.log(value.source);
+              };
+              if (value.link.indexOf('awwwards') > -1) {
+                value.source = 'Awwwards';
+                //console.log(value.source);
+              };
+              if (value.link.indexOf('csswinner') > -1) {
+                value.source = 'CSS Winner';
+                //console.log(value.source);
+              };
 
+              if (value.link.indexOf('producthunt') > -1) {
+                value.source = 'Product Hunt';
+                //console.log(value.source);
+              };
+              if (value.link.indexOf('fubiz') > -1) {
+                value.source = 'Fubiz';
+                //console.log(value.source);
+              };
+              if (value.link.indexOf('smashingmagazine') > -1) {
+                value.source = 'Smashing Magazine';
+                //console.log(value.source);
+              };
             });
 
 
@@ -221,8 +279,13 @@ universityApp.controller('nightModeCtrl', function($scope) {
 
   }
 
+  $scope.installExtension = function() {
+
+    chrome.webstore.install();
+  }
+
 //source tag
- $scope.myFilter = {title: 'fffresco'};
+ $scope.myFilter = {title: 'lomasfffresco'};
 
     //  $scope.setTag = function() {
     //    if ($scope.myFilter = {title: 'fffresco'}) {
@@ -303,10 +366,31 @@ universityApp.config(function($routeProvider) {
             controller: 'mainController'
         })
 
-        .when('/about', {
-            templateUrl: 'about.html',
-            controller: 'aboutController'
+        .when('/newsletter', {
+            templateUrl: 'newsletter.html'
+
         })
+        .when('/recursos', {
+            templateUrl: 'recursos.html'
+        })
+        .when('/blog', {
+            templateUrl: 'blog.html'
+
+        })
+        .when('/sugerir-link', {
+            templateUrl: 'sugerir-link.html'
+
+        })
+        .when('/contacto', {
+            templateUrl: 'contacto.html'
+
+        })
+        .when('/extension', {
+            templateUrl: 'extension.html'
+
+        })
+
+
 
 
 
