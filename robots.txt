@@ -1,4 +1,0 @@
-# Default robots file
-User-agent: *
-Disallow: /cgi-bin/
-Sitemap: http://fffres.co/sitemap.xml
