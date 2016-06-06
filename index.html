@@ -7,6 +7,7 @@
   <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/hheeoflpehnaiffjhnloojookieiikld">
 
     <TITLE> Siempre fffres.co - Inspiración y Recursos diariamente. </TITLE>
     <META NAME="description" CONTENT="El contenido más fffresco sobre diseño,
@@ -16,8 +17,8 @@
     <META NAME="keyword" CONTENT="fffresco, agregador de noticias diseño, inspiración diaria, mejores sitios en español, recursos diseño,">
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
-
+    <link rel="icon" sizes="192x192" href="images/favicon.png">
+    <link rel="shortcut icon" href="images/favicon.png">
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -26,7 +27,6 @@
 
     <link rel="stylesheet" href="stylesheets/material.min.css">
     <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/hheeoflpehnaiffjhnloojookieiikld">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
 
@@ -50,7 +50,7 @@
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
     <meta name="msapplication-TileColor" content="#40EB8E">
 
-    <link rel="shortcut icon" href="images/favicon.png">
+
 
   </head>
   <body ng-controller="nightModeCtrl" ng-class="{'night-mode': nightMode }">
@@ -91,7 +91,7 @@
             </ul>-->
 
         </header>
-        <nav class="demo-navigation mdl-navigation mdl-color-text--grey-600">
+        <nav class="demo-navigation link-menu mdl-navigation mdl-color-text--grey-600">
           <!-- <p>_    Inspiración</p> -->
           <a class="mdl-navigation__link" id="staffpick" ng-click="myFilter = {title: 'fffresco'} " href=""><img src="images/favicon.png" class="iconos-sitios staffpick" >Lo más fresco</a>
           <a class="mdl-navigation__link" id="graffica" ng-click="myFilter = {title:'gràffica'}" href=""><img src="images/graffica.png" class="iconos-sitios" >Graffica</a>
@@ -167,15 +167,16 @@
         </div>
         <div class="menu-aside">
           <ul>
-            <!-- <li> <a onclick="chrome.webstore.install()">Instala la extensión de Chrome <span class="nuevo">NUEVO</span></a></li> -->
+            <li> <a class="install-button" onclick="chrome.webstore.install()">Instala la extensión de Chrome <span class="nuevo">NUEVO</span></a></li>
 
-            <li> <a target="_blank" href="https://chrome.google.com/webstore/detail/fffresco/hheeoflpehnaiffjhnloojookieiikld">Instala la extensión de Chrome <span class="nuevo">NUEVO</span></a></li>
+            <!-- <li> <a target="_blank" href="https://chrome.google.com/webstore/detail/fffresco/hheeoflpehnaiffjhnloojookieiikld">Instala la extensión de Chrome <span class="nuevo">NUEVO</span></a></li> -->
             <li>Modo  <span class="modo-name"> {{mode}}</span>
               <label class="mdl-switch mdl-js-switch " for="switch-1">
                 <input ng-click="nightModeBtn()" type="checkbox" id="switch-1" class="mdl-switch__input" >
                 <span class="mdl-switch__label"></span>
               </label>
             </li>
+            <li> <a target="_blank" href="http://baianai.us9.list-manage.com/subscribe?u=d2da477407de1c6e514956e56&id=c1f768173a">Suscríbete a nuestra newsletter </a></li>
             <li> <a target="_blank" href="http://baianai.es/fffresco/#sugerir">Sugerir contenido</a></li>
             <li> <a target="_blank" href="http://baianai.es/fffresco/">Sobre el proyecto</a></li>
             <li> <a target="_blank" href="http://baianai.es/fffresco/#contacto">Contacto</a></li>

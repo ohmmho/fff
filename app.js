@@ -279,10 +279,13 @@ universityApp.controller('nightModeCtrl', function($scope) {
 
   }
 
-  $scope.installExtension = function() {
-
-    chrome.webstore.install();
-  }
+  // $scope.checkInstalled = function() {
+  //
+  // if (chrome.app.isInstalled) {
+  //   document.getElementById('install-button').style.display = 'none';
+  // }
+  //
+  // }
 
 //source tag
  $scope.myFilter = {title: 'lomasfffresco'};
