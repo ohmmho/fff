@@ -200,10 +200,10 @@
                 $dstwidth=$dstheight*$sourcewidth/$sourceheight;
 
                 $ext=MimeToExtension($imgsource);
-                $imagecreate="imagecreatefrom".$ext;
-                $imgsource = $imagecreate($imgsource);
                 switch($ext){
                     case "jpeg":
+                        $imagecreate="imagecreatefrom".$ext;
+                        $imgsource = $imagecreate($imgsource);
                         $temp=imagecreatetruecolor($dstwidth, $dstheight);
                         imagecopyresampled($temp,$imgsource,0,0,0,0, $dstwidth, $dstheight, $sourcewidth, $sourceheight);
 
@@ -213,6 +213,8 @@
                      break;
 
                     case "png":
+                        $imagecreate="imagecreatefrom".$ext;
+                        $imgsource = $imagecreate($imgsource);
                         $temp=imagecreatetruecolor($dstwidth, $dstheight);
                         $color=imagecolorAllocate($temp,255,255,255);
                         imagefill($temp,0,0,$color);
@@ -222,14 +224,16 @@
                         imagejpeg($temp, $_SERVER['DOCUMENT_ROOT'].$imgdst, 100);
                     break;
 
-                     case "gif":
-                        $temp=imagecreatetruecolor($dstwidth, $dstheight);
-                        $color=imagecolorAllocate($temp,255,255,255);
-                        imagefill($temp,0,0,$color);
-                        imagecopyresampled($temp,$imgsource,0,0,0,0, $dstwidth, $dstheight, $sourcewidth, $sourceheight);
+                    case "gif":
+                        $img = new Imagick ($imgsource);
+                        $n = $img->getNumberImages ();
 
+                        for ($i = 0; $i < $n; $i++) {
+                            $img->scaleImage ($dstwidth, $dstheight);
+                            $img->nextImage ();
+                        }
                         $imgdst=$upload_folder.'/'.$date.'.gif';
-                        imagegif($temp, $_SERVER['DOCUMENT_ROOT'].$imgdst, 100);
+                        $img->writeImages ($_SERVER['DOCUMENT_ROOT'].$imgdst, TRUE);
                      break;
                 }
                 return $imgdst;
