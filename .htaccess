@@ -1,0 +1,7 @@
+<ifmodule mod_expires.c>
+ExpiresActive On
+ExpiresDefault A3600
+<filesmatch ".(jpg|JPG|gif|GIF|png|ico|html|woff2)$">
+ExpiresDefault "access plus 7 day"
+</filesmatch>
+</ifmodule>

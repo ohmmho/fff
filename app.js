@@ -7,202 +7,31 @@ var universityApp = angular.module('universityApp', ['ngRoute', 'ngAnimate', 'ng
 
 var feeds = [];
 
-
-
-
-
-
-  universityApp.factory('FeedLoader', function ($resource) {
-      return $resource('http://ajax.googleapis.com/ajax/services/feed/load', {}, {
-        fetch: { method: 'JSONP', params: {v:'1.0', callback:'JSON_CALLBACK'}, header : {'Content-Type' : 'application/json; charset=UTF-8'} }
-      });
-
-
-  });
-
-  universityApp.service('FeedList', function ($rootScope, FeedLoader, $q) {
-    this.get = function($scope) {
-      var deffered = $q.defer();
-      var feedSource = [
-        {title: 'a', url:'http://agenciabai.es/category/university/feed/'},
-        {title: 'b', url:'http://graffica.info/feed'},
-        {title: 'c', url:'http://40defiebre.com/feed'},
-        {title: 'd', url:'https://dribbble.com/shots/popular.rss'  },
-        {title:'brandemia', url:'http://brandemia.org/feed'},
-        {title: 'e', url:'http://ffffound.com/feed'},
-        {title: 'f', url:'https://www.behance.net/rss'},
-        {title: 'g', url:'http://baianai.es/category/fffres-co/fffres-co-recursos/feed/'},
-        {title: 'h', url:'http://lacriaturacreativa.com/feed/'},
-        {title: 'i', url:'http://www.area-visual.com/feeds/posts/default'},
-        {title: 'k', url:'http://mix.chimpfeedr.com/7e4a7-lomasfffresco'},
-        {title: 'm', url:'http://thecreatorsproject.vice.com/es/rss'},
-        {title: 'n', url:'http://nfgraphics.com/feed/'},
-        {title: 'o', url:'http://www.domestika.org/es/blog/rss'},
-        {title: 'p', url:'http://www.awwwards.com/feed/'},
-        {title: 'q', url:'http://www.csswinner.com/feed'},
-        //{title: 'r', url:'https://www.producthunt.com/feed'},
-        {title: 's', url:'http://www.fubiz.net/feed/'}
-        //{title: 'empleo', url:'http://mix.chimpfeedr.com/74a48-empleofffresco'}
-
-
-        //{title: 't', url:'https://www.smashingmagazine.com/feed/'}
-
-
-
-
-      ]
-
-
-
-      if (feeds.length === 0) {
-        for (var i=0; i < feedSource.length; i++) {
-
-          FeedLoader.fetch({q: feedSource[i].url, num:250}, {}, function (data) {
-          var feed = angular.copy(data.responseData.feed);
-
-          feeds.push(feed);
-          //console.log(feed.title);
-
-            // if(feed.title = "lomasfffresco") {
-            //   console.log('in');
-            //
-            //   for (var i=0; i < feed.entries.length; i++) {
-            //
-            //     console.log(feed.entries);
-            //
-            //     var titulo = angular.element( document.querySelector( '.titulo' ) );
-            //     titulo.addClass('red');
-            //
-            // }
-            //
-            // };
-
-          angular.forEach(feed.entries, function(value){
-
-
-
-            var content = '<div>'+value.content+'</div>';
-            //var description = '<div>'+value.description+'</div>';
-
-
-            // value.contentSni = utf8_decode(value.contentSnippet);
-            //    console.log(value.contentSni);
-            value.sImage =  $(content).find('img').eq(0).attr('src');
-
-
-
-            //asign source name
-
-              if (value.link.indexOf('graffica') > -1) {
-                value.source = 'Gràffica';
-                //console.log(value.source);
-              };
-
-              if (value.link.indexOf('area-visual') > -1) {
-                value.source = 'Área Visual';
-                //console.log(value.source);
-              };
-              if (value.link.indexOf('baianai') > -1) {
-                value.source = 'Staff Pick';
-                //console.log(value.source);
-              };
-              if (value.link.indexOf('brandemia') > -1) {
-                value.source = 'Brandemia';
-                //console.log(value.source);
-              };
-              if (value.link.indexOf('lacriaturacreativa') > -1) {
-                value.source = 'La Criatura Creativa';
-                //console.log(value.source);
-              };
-              if (value.link.indexOf('40defiebre') > -1) {
-                value.source = '40 de Fiebre';
-                //console.log(value.source);
-              };
-              if (value.link.indexOf('thecreatorsproject') > -1) {
-                value.source = 'The Creators Project';
-                //console.log(value.source);
-              };
-              if (value.link.indexOf('CosasVisuales') > -1) {
-                value.source = 'Cosas Visuales';
-                //console.log(value.source);
-              };
-              if (value.link.indexOf('nfgraphics') > -1) {
-                value.source = 'Nice Fucking Graphics!';
-                //console.log(value.source);
-              };
-              if (value.link.indexOf('behance') > -1) {
-                value.source = 'Behance';
-                //console.log(value.source);
-              };
-              if (value.link.indexOf('dribbble') > -1) {
-                value.source = 'Dribbble';
-                //console.log(value.source);
-              };
-              if (value.link.indexOf('ffffound') > -1) {
-                value.source = 'FFFFOUND';
-                //console.log(value.source);
-              };
-              if (value.link.indexOf('domestika') > -1) {
-                value.source = 'Domestika';
-                //console.log(value.source);
-              };
-              if (value.link.indexOf('awwwards') > -1) {
-                value.source = 'Awwwards';
-                //console.log(value.source);
-              };
-              if (value.link.indexOf('csswinner') > -1) {
-                value.source = 'CSS Winner';
-                //console.log(value.source);
-              };
-
-              if (value.link.indexOf('producthunt') > -1) {
-                value.source = 'Product Hunt';
-                //console.log(value.source);
-              };
-              if (value.link.indexOf('fubiz') > -1) {
-                value.source = 'Fubiz';
-                //console.log(value.source);
-              };
-              if (value.link.indexOf('smashingmagazine') > -1) {
-                value.source = 'Smashing Magazine';
-                //console.log(value.source);
-              };
-            });
-
-
-           deffered.resolve(feeds);
-
-
-           });
-
-        }
-      }
-
-      return deffered.promise;
-    };
-
-  });
-
-
-
-
-
   // CONTROLLERS ============================================
 
-universityApp.controller('feedsCtrl', function($scope, FeedList) {
+universityApp.controller('feedsCtrl', function($scope) {
 
 
 
-  $scope.getFeeds = function() {
-    FeedList.get().then(function(data){
+    $scope.getFeeds = function() {
+        /*FeedList.get().then(function(data){
+            $scope.feeds = data;
+            console.log($scope.feeds);
+        });*/
+        var feedList=$.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "includes/script.php?action=getFeeds",
+            error: function(error){
+                console.log(error);
+            },
+            async: false,
+        });
 
-       $scope.feeds = data;
-    console.log($scope.feeds);
-
-
-   })
-  }
-
+        $scope.feeds=feedList.responseJSON;
+        console.log(feedList.responseJSON);
+        //return feedList.responseJSON;
+    }
 
   $scope.getFeeds();
 
