@@ -1,5 +1,5 @@
 <?php
-    set_time_limit(0);
+    ini_set('max_execution_time', 10*60);
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
 
@@ -9,5 +9,6 @@
     define("DB_NAME", "");
     define("DB_SERVER", "");
 
+    define("PAGE_INDEX", "");
     define("NUM_ENTRIES", 50);
 ?>
