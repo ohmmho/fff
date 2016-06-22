@@ -1,7 +1,5 @@
 <?php
-    set_time_limit(0);
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
+    require_once 'config.php';
     require_once 'classes/database.class.php';
     $db=New Database();
 
@@ -32,7 +30,7 @@
 
                         $query="SELECT count(*) as count FROM entries WHERE source='".$entry["source"]."'";
                         $answer = $db->_db->query($query)->fetch_assoc();
-                        if($answer["count"]>50){
+                        if($answer["count"]>NUM_ENTRIES){
                             $query="SELECT sImage FROM entries WHERE source='".$entry["source"]."' ORDER BY publishedDate ASC LIMIT 1";
                             $answer = $db->_db->query($query)->fetch_assoc();
                             @unlink($_SERVER['DOCUMENT_ROOT'].$answer["sImage"]);
@@ -90,7 +88,7 @@
         );
         $feedlist=array();
         foreach ($feedSource as $feed_url){
-            $data = file_get_contents("http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=50&q=".$feed_url);
+            $data = file_get_contents("http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=".NUM_ENTRIES."&q=".$feed_url);
             $object = json_decode($data)->responseData->feed;
             $entries=array();
             foreach($object->entries as $entry){

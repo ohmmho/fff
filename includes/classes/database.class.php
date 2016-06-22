@@ -5,10 +5,10 @@
 
         public function __construct(){
 
-            $db_server="localhost";
-            $db_user="fffresco";
-            $db_pass="MUYFR3SC0";
-            $db_name="fffresco";
+            $db_server=DB_SERVER;
+            $db_user=DB_USER;
+            $db_pass=DB_PASS;
+            $db_name=DB_NAME;
             $this->_db = new mysqli($db_server, $db_user, $db_pass, $db_name);
             $this->_db->query("SET NAMES 'utf8'"); // so important..
             if ( $this->_db->connect_error ) {
