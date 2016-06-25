@@ -3,8 +3,36 @@
     require_once 'classes/database.class.php';
     $db=New Database();
 
-    switch($_GET["action"]){
-        case 'setFeeds':
+    if(isset($_GET["action"])){
+        $action=$_GET["action"];
+    }else{
+        $action="";
+    }
+    switch($action){
+        case 'getFeeds':
+            $queryfeeds="SELECT * FROM feeds";
+            if($answerfeed=$db->_db->query($queryfeeds)){
+                $countfeeds=0;
+                while($rowfeed = $answerfeed->fetch_assoc()){
+                    $queryentries="SELECT * FROM entries WHERE feed='".$rowfeed["id"]."' ORDER BY publishedDate DESC";
+                    if($answerentries=$db->_db->query($queryentries)){
+                        $countentries=0;
+                        while($rowentries = $answerentries->fetch_assoc()){
+                            $entries[$countentries]=$rowentries;
+                            $countentries++;
+                        }
+                        $feeds[$countfeeds]=$rowfeed;
+                        @$feeds[$countfeeds]["entries"]=$entries;
+                        $countfeeds++;
+                    }
+                }
+                if(!empty($feeds)){
+                    echo json_encode($feeds);
+                }
+            }
+        break;
+
+        default:
             $feedlist=getNewFeeds();
             //print_r($feedlist);
             foreach($feedlist as $feed){
@@ -20,7 +48,7 @@
                 }
 
                 foreach ($feed["entries"] as $entry){
-                    $query="INSERT INTO entries (source, publishedDate, author, link, sImage, title, feed) VALUES ('".$entry["source"]."', '".date("Y-m-d H:i:s", $entry["publishedDate"])."', '".$entry["author"]."', '".$entry["link"]."', '".$entry["sImage"]."', '".$entry["title"]."', '".$id_feed."')";
+                    $query="INSERT INTO entries (source, publishedDate, author, contentSnippet, link, sImage, title, feed) VALUES ('".$entry["source"]."', '".date("Y-m-d H:i:s", $entry["publishedDate"])."', '".$entry["author"]."', '".$entry["contentSnippet"]."','".$entry["link"]."', '".$entry["sImage"]."', '".$entry["title"]."', '".$id_feed."')";
                     if($db->_db->query($query)){
                         if($sImage=saveImage($entry["sImage"], $entry["source"], $entry["publishedDate"])){
                             $query="UPDATE entries SET sImage='".$sImage."' WHERE source='".$entry["source"]."' AND publishedDate='".date("Y-m-d H:i:s", $entry["publishedDate"])."'";
@@ -40,30 +68,6 @@
                     }
                 }
             }
-        break;
-
-        case 'getFeeds':
-            $queryfeeds="SELECT * FROM feeds";
-            if($answerfeed=$db->_db->query($queryfeeds)){
-                $countfeeds=0;
-                while($rowfeed = $answerfeed->fetch_assoc()){
-                    $queryentries="SELECT * FROM entries WHERE feed='".$rowfeed["id"]."'";
-                    if($answerentries=$db->_db->query($queryentries)){
-                        $countentries=0;
-                        while($rowentries = $answerentries->fetch_assoc()){
-                            $entries[$countentries]=$rowentries;
-                            $countentries++;
-                        }
-                        $feeds[$countfeeds]=$rowfeed;
-                        $feeds[$countfeeds]["entries"]=$entries;
-                        $countfeeds++;
-                    }
-                }
-                if(!empty($feeds)){
-                    echo json_encode($feeds);
-                }
-            }
-        break;
     }
 
     function getNewFeeds() {
@@ -97,7 +101,7 @@
                     "publishedDate" => strtotime($entry->publishedDate),
                     "author" => $entry->author,
                     //"content" => htmlspecialchars($entry->content),
-                    //"contentSnippet" => $entry->contentSnippet,
+                    "contentSnippet" => $entry->contentSnippet,
                     "link" => $entry->link,
                     "sImage" => getSrc($entry->content),
                     "title" => $entry->title,
@@ -185,56 +189,45 @@
         if(!empty($imgsource)){
             $feedsource=sanitize_string($feedsource);
             $upload_folder='/images/sImage/'.$feedsource;
-            if (!file_exists($_SERVER['DOCUMENT_ROOT'].$upload_folder)) {
-                mkdir($_SERVER['DOCUMENT_ROOT'].$upload_folder, 0777, true);
+            if (!file_exists(INDEX.$upload_folder)) {
+                if(mkdir(INDEX.$upload_folder, 0777, true)){
+                    //echo "perfect";
+                }
             }
 
-            /* original size */
-            if($size=getimagesize($imgsource)){
-                $sourcewidth = $size[0];
-                $sourceheight =$size[1];
-                /* destiny size*/
-                $dstheight=214;
-                $dstwidth=$dstheight*$sourcewidth/$sourceheight;
 
-                $ext=MimeToExtension($imgsource);
-                switch($ext){
-                    case "jpeg":
-                        $imagecreate="imagecreatefrom".$ext;
-                        $imgsource = $imagecreate($imgsource);
-                        $temp=imagecreatetruecolor($dstwidth, $dstheight);
-                        imagecopyresampled($temp,$imgsource,0,0,0,0, $dstwidth, $dstheight, $sourcewidth, $sourceheight);
+            $dstheight=THUMB_HEIGHT*2;
 
-                        $imgdst=$upload_folder.'/'.$date.'.jpg';
-                        imagejpeg($temp, $_SERVER['DOCUMENT_ROOT'].$imgdst, 100);
-                        ImageDestroy($imgsource);
-                     break;
+            $ext=MimeToExtension($imgsource);
+            switch($ext){
+                case "jpeg": case "png":
+                    $img = new Imagick ($imgsource);
+                    $img->resizeImage (0, $dstheight, imagick::FILTER_LANCZOS, 1);
+                    $img->setImageCompression(Imagick::COMPRESSION_JPEG);
+                    $img->setImageCompressionQuality(JPG_COMPRESSION);
+                    $img->setImageFormat('jpg');
+                    $img->stripImage();
+                    $imgdst=$upload_folder.'/'.$date.'.jpg';
+                    if($img->writeImage (INDEX.$imgdst)){
+                        return $imgdst;
+                    }
+                break;
 
-                    case "png":
-                        $imagecreate="imagecreatefrom".$ext;
-                        $imgsource = $imagecreate($imgsource);
-                        $temp=imagecreatetruecolor($dstwidth, $dstheight);
-                        $color=imagecolorAllocate($temp,255,255,255);
-                        imagefill($temp,0,0,$color);
-                        imagecopyresampled($temp,$imgsource,0,0,0,0, $dstwidth, $dstheight, $sourcewidth, $sourceheight);
+                case "gif":
+                    $img = new Imagick ($imgsource);
+                    $img = $img->coalesceImages();
 
-                        $imgdst=$upload_folder.'/'.$date.'.jpg';
-                        imagejpeg($temp, $_SERVER['DOCUMENT_ROOT'].$imgdst, 100);
-                    break;
+                    foreach ($img as $frame) {
+                        $frame->resizeImage (0, $dstheight, imagick::FILTER_LANCZOS, 1);
+                        $frame->setImagePage($frame->getImageWidth(), $frame->getImageHeight(), 0, 0);
+                    }
 
-                    case "gif":
-                        $img = new Imagick ($imgsource);
-                        $n = $img->getNumberImages ();
-
-                        for ($i = 0; $i < $n; $i++) {
-                            $img->scaleImage ($dstwidth, $dstheight);
-                            $img->nextImage ();
-                        }
-                        $imgdst=$upload_folder.'/'.$date.'.gif';
-                        $img->writeImages ($_SERVER['DOCUMENT_ROOT'].$imgdst, TRUE);
-                     break;
-                }
-                return $imgdst;
+                    $img = $img->deconstructImages();
+                    $imgdst=$upload_folder.'/'.$date.'.gif';
+                    if($img->writeImages (INDEX.$imgdst, TRUE)){
+                        return $imgdst;
+                    }
+                 break;
             }
         }
     }
